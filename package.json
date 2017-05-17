@@ -1,0 +1,69 @@
+{
+  "name": "axis-configuration",
+  "version": "0.0.1",
+  "description": "A node.js library written in TypeScript capable of configuring Axis Communication cameras.",
+  "keywords": [
+    "axis",
+    "communications",
+    "camera",
+    "device",
+    "configuration"
+  ],
+  "homepage": "https://github.com/FantasticFiasco/axis-configuration",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FantasticFiasco/axis-configuration.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FantasticFiasco/axis-configuration/issues"
+  },
+  "author": "Mattias Kindborg",
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "types": "./lib/index",
+  "engines": {
+    "node": ">=4.6.1"
+  },
+  "scripts": {
+    "clean": "rimraf \"./+(src|test)/**/*.d.ts\" \"./+(src|test)/**/*.js.map\" \"./+(src|test)/**/*.js\" ./lib ./coverage",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "postbuild": "cpx \"./src/**/*.{d.ts,js}\" ./lib/",
+    "prestart": "npm run build",
+    "start": "node ./src/server.js",
+    "pretest": "npm run build",
+    "test": "mocha --recursive",
+    "lint": "tslint \"./src/**/*.ts\" --exclude \"./**/*.d.ts\"",
+    "precoverage": "npm run build",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --recursive",
+    "postcoverage": "remap-istanbul --input coverage/coverage.json --type lcovonly --output coverage/lcov.info",
+    "precoverage:publish": "npm run coverage",
+    "coverage:publish": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "prepack": "npm run test && npm run lint",
+    "pack": "npm pack"
+  },
+  "dependencies": {
+    "request": "2.81.0",
+    "request-promise": "4.2.1"
+  },
+  "devDependencies": {
+    "@types/chai": "3.5.2",
+    "@types/chai-as-promised": "0.0.30",
+    "@types/mocha": "2.2.41",
+    "@types/node": "7.0.18",
+    "@types/request": "0.0.43",
+    "@types/request-promise": "4.1.33",
+    "@types/sinon": "2.2.1",
+    "chai": "3.5.0",
+    "chai-as-promised": "6.0.0",
+    "coveralls": "2.13.1",
+    "cpx": "1.5.0",
+    "istanbul": "0.4.5",
+    "mocha": "3.4.1",
+    "remap-istanbul": "0.9.5",
+    "rimraf": "2.6.1",
+    "sinon": "2.2.0",
+    "tslint": "5.2.0",
+    "typescript": "2.3.2"
+  }
+}
