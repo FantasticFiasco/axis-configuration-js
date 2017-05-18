@@ -8,6 +8,11 @@
 
 A node.js library written in TypeScript capable of configuring [Axis Communication](http://www.axis.com) cameras.
 
+## Prerequisites
+
+- __Property__: `Properties.API.HTTP.Version=3`
+- __Firmware__: 5.00 and later
+
 ## Credit
 
 Thank you [JetBrains](https://www.jetbrains.com/) for your important initiative to support the open source community with free licenses to your products.
