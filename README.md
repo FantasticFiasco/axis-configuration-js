@@ -1,5 +1,7 @@
 # axis-configuration
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/FantasticFiasco/axis-configuration.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/FantasticFiasco/axis-configuration.svg?branch=master)](https://travis-ci.org/FantasticFiasco/axis-configuration)
 [![Coverage Status](https://coveralls.io/repos/github/FantasticFiasco/axis-configuration/badge.svg)](https://coveralls.io/github/FantasticFiasco/axis-configuration)
 [![dependencies Status](https://david-dm.org/FantasticFiasco/axis-configuration/status.svg)](https://david-dm.org/FantasticFiasco/axis-configuration)
