@@ -16,8 +16,7 @@ export class User {
          */
         readonly password: string | undefined,
         /**
-         * Colon separated existing secondary group names of the account. This argument sets the
-         * user access rights for the user account.
+         * The access rights for the user.
          */
         readonly accessRights: AccessRights,
         /**
