@@ -93,6 +93,8 @@ class UserAccounts {
 
 #### User
 
+The `User` class is a immutable description of a user account on the camera.
+
 ```javascript
 /**
  * Class describing a user.
