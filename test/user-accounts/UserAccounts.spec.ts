@@ -127,7 +127,7 @@ describe('Users', () => {
             const fn = () => userAccounts.add(user);
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(ExpectationError);
+            return expect(fn()).to.be.rejectedWith(ExpectationError);
         });
 
         it('should throw exception if user already exists', () => {
@@ -142,7 +142,7 @@ describe('Users', () => {
             const fn = () => userAccounts.add(user);
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(UserAlreadyExistsError);
+            return expect(fn()).to.be.rejectedWith(UserAlreadyExistsError);
         });
 
         it('should throw exception if device is unresponsive', () => {
@@ -157,7 +157,7 @@ describe('Users', () => {
             const fn = () => userAccounts.add(user);
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(RequestError);
+            return expect(fn()).to.be.rejectedWith(RequestError);
         });
 
         it('should throw exception if user is unauthorized', () => {
@@ -172,7 +172,7 @@ describe('Users', () => {
             const fn = () => userAccounts.add(user);
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(UnauthorizationError);
+            return expect(fn()).to.be.rejectedWith(UnauthorizationError);
         });
     });
 
@@ -331,7 +331,7 @@ describe('Users', () => {
             const fn = () => userAccounts.getAll();
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(RequestError);
+            return expect(fn()).to.be.rejectedWith(RequestError);
         });
 
         it('should throw exception if user is unauthorized', () => {
@@ -344,7 +344,7 @@ describe('Users', () => {
             const fn = () => userAccounts.getAll();
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(UnauthorizationError);
+            return expect(fn()).to.be.rejectedWith(UnauthorizationError);
         });
     });
 
@@ -451,7 +451,7 @@ describe('Users', () => {
             const fn = () => userAccounts.update(user);
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(UnknownError);
+            return expect(fn()).to.be.rejectedWith(UnknownError);
         });
 
         it('should throw exception if device is unresponsive', () => {
@@ -466,7 +466,7 @@ describe('Users', () => {
             const fn = () => userAccounts.update(user);
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(RequestError);
+            return expect(fn()).to.be.rejectedWith(RequestError);
         });
 
         it('should throw exception if user is unauthorized', () => {
@@ -481,7 +481,7 @@ describe('Users', () => {
             const fn = () => userAccounts.update(user);
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(UnauthorizationError);
+            return expect(fn()).to.be.rejectedWith(UnauthorizationError);
         });
     });
 
@@ -511,7 +511,7 @@ describe('Users', () => {
             const fn = () => userAccounts.remove('Joe');
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(UnknownError);
+            return expect(fn()).to.be.rejectedWith(UnknownError);
         });
 
         it('should throw exception if device is unresponsive', () => {
@@ -524,7 +524,7 @@ describe('Users', () => {
             const fn = () => userAccounts.remove('Joe');
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(RequestError);
+            return expect(fn()).to.be.rejectedWith(RequestError);
         });
 
         it('should throw exception if user is unauthorized', () => {
@@ -537,7 +537,7 @@ describe('Users', () => {
             const fn = () => userAccounts.remove('Joe');
 
             // Assert
-            return expect(fn()).to.eventually.be.rejectedWith(UnauthorizationError);
+            return expect(fn()).to.be.rejectedWith(UnauthorizationError);
         });
     });
 });
