@@ -119,7 +119,7 @@ describe('Users', () => {
             expect(scope.isDone()).to.be.true;
         });
 
-        it('should throw exception if password is omitted', () => {
+        it('should throw exception if password is omitted', async () => {
             // Arrange
             const user = new User('Joe', undefined, AccessRights.Viewer, false);
 
@@ -130,7 +130,7 @@ describe('Users', () => {
             return expect(fn()).to.be.rejectedWith(ExpectationError);
         });
 
-        it('should throw exception if user already exists', () => {
+        it('should throw exception if user already exists', async () => {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -145,7 +145,7 @@ describe('Users', () => {
             return expect(fn()).to.be.rejectedWith(UserAlreadyExistsError);
         });
 
-        it('should throw exception if device is unresponsive', () => {
+        it('should throw exception if device is unresponsive', async () => {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -160,7 +160,7 @@ describe('Users', () => {
             return expect(fn()).to.be.rejectedWith(RequestError);
         });
 
-        it('should throw exception if user is unauthorized', () => {
+        it('should throw exception if user is unauthorized', async () => {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -321,7 +321,7 @@ describe('Users', () => {
             expect(users[2].ptz).to.be.true;
         });
 
-        it('should throw exception if device is unresponsive', () => {
+        it('should throw exception if device is unresponsive', async () => {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=get/)
@@ -334,7 +334,7 @@ describe('Users', () => {
             return expect(fn()).to.be.rejectedWith(RequestError);
         });
 
-        it('should throw exception if user is unauthorized', () => {
+        it('should throw exception if user is unauthorized', async () => {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=get/)
@@ -439,7 +439,7 @@ describe('Users', () => {
             expect(scope.isDone()).to.be.true;
         });
 
-        it('should throw exception if user does not exist', () => {
+        it('should throw exception if user does not exist', async () => {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -454,7 +454,7 @@ describe('Users', () => {
             return expect(fn()).to.be.rejectedWith(UnknownError);
         });
 
-        it('should throw exception if device is unresponsive', () => {
+        it('should throw exception if device is unresponsive', async () => {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -469,7 +469,7 @@ describe('Users', () => {
             return expect(fn()).to.be.rejectedWith(RequestError);
         });
 
-        it('should throw exception if user is unauthorized', () => {
+        it('should throw exception if user is unauthorized', async () => {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -501,7 +501,7 @@ describe('Users', () => {
             expect(scope.isDone()).to.be.true;
         });
 
-        it('should throw exception if user does not exist', () => {
+        it('should throw exception if user does not exist', async () => {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=remove/)
@@ -514,7 +514,7 @@ describe('Users', () => {
             return expect(fn()).to.be.rejectedWith(UnknownError);
         });
 
-        it('should throw exception if device is unresponsive', () => {
+        it('should throw exception if device is unresponsive', async () => {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=remove/)
@@ -527,7 +527,7 @@ describe('Users', () => {
             return expect(fn()).to.be.rejectedWith(RequestError);
         });
 
-        it('should throw exception if user is unauthorized', () => {
+        it('should throw exception if user is unauthorized', async () => {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=remove/)
