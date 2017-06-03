@@ -9,6 +9,66 @@
 
 A Node.js library written in TypeScript capable of configuring [Axis Communication](http://www.axis.com) cameras.
 
+## Table of contents
+
+- [Super simple to use](#super-simple-to-use)
+- [Installation](installation)
+- [Prerequisites](prerequisites)
+- [Parameters](parameters)
+- [User accounts](user-accounts)
+- [Credit](credit)
+
+---
+
+## Super simple to use
+
+```javascript
+const connection = new Connection(Protocol.Http, '192.168.1.102', 80, 'admin', '32naJzkJdZ!7*HK&Dz');
+
+//// Parameters
+const parameters = new Parameters(connection);
+let root: { [name: string]: string };
+
+// Get parameter
+root = await parameters.get('Network.Bonjour.FriendlyName');
+// => { 'Network.Bonjour.FriendlyName': 'Some name' }
+
+// Get parameters using wildcard
+root = await parameters.get('Network.*.FriendlyName');
+// => { 'Network.Bonjour.FriendlyName': 'Some name', 'Network.UPnP.FriendlyName': 'Some name' }
+
+// Get parameter group
+root = await parameters.get('Network.Bonjour');
+// => { 'Network.Bonjour.FriendlyName': 'Some name', 'Network.Bonjour.Enabled': 'yes' }
+
+// Update parameter
+await parameters.update({ 'Network.Bonjour.FriendlyName': 'Some new name' });
+
+// Update parameters
+await parameters.update({
+    'Network.Bonjour.FriendlyName': 'Some new name',
+    'Network.UPnP.FriendlyName': 'Some new name',
+});
+
+//// Users
+const userAccounts = new UserAccounts(connection);
+
+// Add user account
+const user = new User('John', 'D2fK$xFpBaxtH@RQ5j', AccessRights.Viewer, true);
+await userAccounts.add(user);
+
+// Get all user accounts
+const users = await userAccounts.getAll();
+// => [ User { name: 'root', password: undefined, accessRights: 2, ptz: true } ]
+
+// Update user account
+const promotion = new User(user.name, user.password, AccessRights.Operator, user.ptz);
+await userAccounts.update(promotion);
+
+// Remove user account
+await userAccounts.remove(user.name);
+```
+
 ## Installation
 
 ```sh
@@ -22,32 +82,49 @@ The library support cameras with the following characteristics:
 - __Property__: `Properties.API.HTTP.Version=3`
 - __Firmware__: 5.00 and later
 
-## User accounts
+## Parameters
 
-### Usage
+The HTTP-based Axis camera interface called VAPIX provides the functionality for getting and setting internal parameter values. The following JavaScript classes will ease your work, letting you focus on the code in your application instead of having to deal with the intricate nature of HTTP requests and responds to cameras.
+
+### `Parameters`
+
+The `Parameters` class exposes parameter related operations on the camera. With it you can read and write parameters. Please note that the parameters you can read and write depend on the access rights of the user you specify to carry out these operations.
 
 ```javascript
-const connection = new Connection(Protocol.Http, '192.168.1.102', 80, 'admin', '32naJzkJdZ!7*HK&Dz');
-const userAccounts = new UserAccounts(connection);
+/**
+ * Class responsible getting and setting non-dynamic parameter values. Non-dynamic parameters are
+ * pre-configured and already exist in your Axis product. A non-dynamic parameter has one or more
+ * values. Some non-dynamic parameters are configurable and some are read only.
+ */
+class Parameters {
+    /**
+     * Gets parameters and their current values.
+     * @param parameterGroups A sequence of parameters named '{group}.{name}'. If {name} is
+     * omitted, all the parameters of the {group} are returned. Wildcard (*) can be used filter
+     * parameters. E.g. 'Network.*.FriendlyName' will return the two parameters
+     * 'Network.Bonjour.FriendlyName' and 'Network.SSDP.FriendlyName'.
+     * @throws {UnauthorizedError} User is not authorized to perform operation.
+     * @throws {RequestError} Request failed.
+     */
+    get(...parameterGroups: string[]): Promise<{ [name: string]: string }>;
 
-// Add user account
-const user = new User('John', 'D2fK$xFpBaxtH@RQ5j', AccessRights.Viewer, true);
-await userAccounts.add(user);
-
-// Get all user accounts
-const users = await userAccounts.getAll();
-
-// Update user account
-const promotion = new User(user.name, user.password, AccessRights.Operator, user.ptz);
-await userAccounts.update(promotion);
-
-// Remove user account
-await userAccounts.remove(user.name);
+    /**
+     * Updates parameters with new values.
+     * @param parameters An object with parameters named '{group}.{name}' and their corresponding
+     * new value.
+     * @throws {UpdateParametersError} Updating one or many of the parameters failed.
+     * @throws {UnauthorizedError} User is not authorized to perform operation.
+     * @throws {RequestError} Request failed.
+     */
+    update(parameters: { [name: string]: string }): Promise<void>;
+}
 ```
 
-### API
+## User accounts
 
-#### UserAccounts
+The HTTP-based AXIS camera interface called VAPIX provides the functionality for adding a new user account with password and group membership, modify the information and remove a user account. The following JavaScript classes will improve working with user accounts, letting you focus on the code in your application instead of having to deal with the intricate nature of HTTP requests and responds.
+
+### `UserAccounts`
 
 The `UserAccounts` class exposes all user account related operations on the camera. With it you can add, read, update and remove user accounts. Please note that you need an existing user with administrator access rights to carry out these operations.
 
@@ -59,6 +136,7 @@ The `UserAccounts` class exposes all user account related operations on the came
 class UserAccounts {
     /**
      * Adds a new user.
+     * @param user The user to add. Please note that the password must be specified.
      * @throws {UserAlreadyExistsError} User already exists.
      * @throws {UnauthorizedError} User is not authorized to perform operation.
      * @throws {RequestError} Request failed.
@@ -75,6 +153,7 @@ class UserAccounts {
 
     /**
      * Updates a user.
+     * @param user The user to update. Please note that the password must be specified.
      * @throws {UnauthorizedError} User is not authorized to perform operation.
      * @throws {RequestError} Request failed.
      * @throws {UnknownError} Error cause is unknown.
@@ -83,6 +162,7 @@ class UserAccounts {
 
     /**
      * Removes a user.
+     * @param username The name of the user to remove.
      * @throws {UnauthorizedError} User is not authorized to perform operation.
      * @throws {RequestError} Request failed.
      * @throws {UnknownError} Error cause is unknown.
@@ -91,7 +171,7 @@ class UserAccounts {
 }
 ```
 
-#### User
+### `User`
 
 The `User` class is a immutable description of a user account on the camera.
 
@@ -121,11 +201,10 @@ class User {
      */
     readonly ptz: boolean;
 }
-
 ```
 
 ## Credit
 
 Thank you [JetBrains](https://www.jetbrains.com/) for your important initiative to support the open source community with free licenses to your products.
 
-![JetBrains](./design/jetbrains.png)
+![JetBrains](./doc/resources/jetbrains.png)

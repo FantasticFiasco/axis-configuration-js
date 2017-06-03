@@ -28,6 +28,15 @@ export class Expect {
     }
 
     /**
+     * Validates that a string is defined.
+     */
+    public static toBeDefined(value: string | undefined, errorMessage: string) {
+        if (!value) {
+            throw new ExpectationError(errorMessage);
+        }
+    }
+
+    /**
      * Validates that a string is of a certain length.
      */
     public static toBeOfLength(value: string, min: number, max: number, errorMessage: string) {
@@ -37,10 +46,10 @@ export class Expect {
     }
 
     /**
-     * Validates that a string is defined.
+     * Validates that a condition is true.
      */
-    public static toBeDefined(value: string | undefined, errorMessage: string) {
-        if (!value) {
+    public static toBeTrue(condition: boolean, errorMessage: string) {
+        if (!condition) {
             throw new ExpectationError(errorMessage);
         }
     }

@@ -1,5 +1,5 @@
 import { UnknownError } from './../..';
-import { Response } from './Response';
+import { Response } from './../../shared/Response';
 
 export class RemoveUserResponse extends Response {
     private static readonly SuccessResponse = /Removed account .*\./;

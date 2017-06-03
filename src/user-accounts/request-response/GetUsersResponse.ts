@@ -1,9 +1,13 @@
 import * as _ from 'lodash';
 
 import { AccessRights, User } from './../..';
-import { Response } from './Response';
+import { Response } from './../../shared/Response';
 
 export class GetUsersResponse extends Response {
+    // A parameter has the following format:
+    // [NAME]="[VALUE1],[VALUE2]..."
+    private static readonly ParameterSuccessResponse = /\s*(\S*)\s*=\s*"(\S*)"\s*/;
+
     private parsedUsers?: User[];
 
     constructor(response: string) {
@@ -41,16 +45,17 @@ export class GetUsersResponse extends Response {
 
     private parseParameters(): { [name: string]: string[] } {
         // Each line represents a parameter
-        const parameters = this.response.split('\r\n');
+        const parameters = this.response.split('\n');
 
-        return _.reduce(parameters, (result, parameter) => {
-            // A parameter has the following format:
-            // [NAME]="[VALUE1],[VALUE2]..."
-            const parts = parameter.split('=');
-            const name = parts[0];
-            const values = _.trim(parts[1], '"');
+        return _.reduce(parameters, (result: { [name: string]: string[] }, parameter: string) => {
+            const match = GetUsersResponse.ParameterSuccessResponse.exec(parameter);
+            if (match) {
+                const name = match[1];
+                const values = match[2].split(',');
 
-            result[name] = _.filter(values.split(','), (value) => value.length > 0);
+                result[name] = _.filter(values, (value) => value.length > 0);
+            }
+
             return result;
         }, {});
     }

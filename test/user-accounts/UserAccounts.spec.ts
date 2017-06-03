@@ -1,6 +1,4 @@
-import { expect } from 'chai';
 import * as chai from 'chai';
-import * as chaiAsPromised from 'chai-as-promised';
 import * as nock from 'nock';
 
 import {
@@ -17,19 +15,19 @@ import { ExpectationError } from './../../src/shared/expectations/ExpectationErr
 import { Generate } from './Generate';
 import { GetUsersResponseBuilder } from './request-response/GetUsersResponseBuilder';
 
-chai.use(chaiAsPromised);
+chai.should();
 
-describe('Users', () => {
+describe('users', function() {
 
     const connection = new Connection(Protocol.Http, '1.2.3.4', 80, 'root', 'pass');
     const userAccounts = new UserAccounts(connection);
 
-    afterEach(() => {
+    afterEach('after each user test', function() {
         nock.cleanAll();
     });
 
-    describe('#add', () => {
-        it('should add user with viewer access', async () => {
+    describe('#add', function() {
+        it('should add user with viewer access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -41,10 +39,10 @@ describe('Users', () => {
             await userAccounts.add(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should add user with viewer and PTZ access', async () => {
+        it('should add user with viewer and PTZ access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, true);
 
@@ -56,10 +54,10 @@ describe('Users', () => {
             await userAccounts.add(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should add user with operator access', async () => {
+        it('should add user with operator access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Operator, false);
 
@@ -71,10 +69,10 @@ describe('Users', () => {
             await userAccounts.add(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should add user with operator and PTZ access', async () => {
+        it('should add user with operator and PTZ access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Operator, true);
 
@@ -86,10 +84,10 @@ describe('Users', () => {
             await userAccounts.add(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should add user with administrator access', async () => {
+        it('should add user with administrator access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Administrator, false);
 
@@ -101,10 +99,10 @@ describe('Users', () => {
             await userAccounts.add(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should add user with administrator and PTZ access', async () => {
+        it('should add user with administrator and PTZ access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Administrator, true);
 
@@ -116,21 +114,24 @@ describe('Users', () => {
             await userAccounts.add(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.to.be.true;
         });
 
-        it('should throw exception if password is omitted', async () => {
+        it('should throw exception if password is omitted', async function() {
             // Arrange
             const user = new User('Joe', undefined, AccessRights.Viewer, false);
 
-            // Act
-            const fn = () => userAccounts.add(user);
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(ExpectationError);
+            try {
+                // Act
+                await userAccounts.add(user);
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(ExpectationError);
+            }
         });
 
-        it('should throw exception if user already exists', async () => {
+        it('should throw exception if user already exists', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -138,14 +139,17 @@ describe('Users', () => {
                 .get(/pwdgrp.cgi\?action=add/)
                 .reply(200, Generate.html('Error: this user name already exists, consult the system log file'));
 
-            // Act
-            const fn = () => userAccounts.add(user);
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(UserAlreadyExistsError);
+            try {
+                // Act
+                await userAccounts.add(user);
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(UserAlreadyExistsError);
+            }
         });
 
-        it('should throw exception if device is unresponsive', async () => {
+        it('should throw exception if device is unresponsive', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -153,14 +157,17 @@ describe('Users', () => {
                 .get(/pwdgrp.cgi\?action=add/)
                 .replyWithError(`Error: connect ETIMEDOUT ${connection.address}:${connection.port}`);
 
-            // Act
-            const fn = () => userAccounts.add(user);
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(RequestError);
+            try {
+                // Act
+                await userAccounts.add(user);
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(RequestError);
+            }
         });
 
-        it('should throw exception if user is unauthorized', async () => {
+        it('should throw exception if user is unauthorized', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -168,23 +175,26 @@ describe('Users', () => {
                 .get(/pwdgrp.cgi\?action=add/)
                 .reply(401);
 
-            // Act
-            const fn = () => userAccounts.add(user);
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(UnauthorizationError);
+            try {
+                // Act
+                await userAccounts.add(user);
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(UnauthorizationError);
+            }
         });
     });
 
-    describe('#getAll', () => {
+    describe('#getAll', function() {
 
         let responseBuilder: GetUsersResponseBuilder;
 
-        beforeEach(() => {
+        beforeEach('before each #getAll test', function() {
             responseBuilder = new GetUsersResponseBuilder();
         });
 
-        it('should get user with viewer access', async () => {
+        it('should get user with viewer access', async function() {
             // Arrange
             responseBuilder.addUser('Joe', AccessRights.Viewer, false);
 
@@ -196,13 +206,13 @@ describe('Users', () => {
             const users = await userAccounts.getAll();
 
             // Assert
-            expect(users.length).to.equal(1);
-            expect(users[0].name).to.equal('Joe');
-            expect(users[0].accessRights).to.equal(AccessRights.Viewer);
-            expect(users[0].ptz).to.be.false;
+            users.length.should.equal(1);
+            users[0].name.should.equal('Joe');
+            users[0].accessRights.should.equal(AccessRights.Viewer);
+            users[0].ptz.should.be.false;
         });
 
-        it('should get user with viewer and PTZ access', async () => {
+        it('should get user with viewer and PTZ access', async function() {
             // Arrange
             responseBuilder.addUser('Joe', AccessRights.Viewer, true);
 
@@ -214,13 +224,13 @@ describe('Users', () => {
             const users = await userAccounts.getAll();
 
             // Assert
-            expect(users.length).to.equal(1);
-            expect(users[0].name).to.equal('Joe');
-            expect(users[0].accessRights).to.equal(AccessRights.Viewer);
-            expect(users[0].ptz).to.be.true;
+            users.length.should.equal(1);
+            users[0].name.should.equal('Joe');
+            users[0].accessRights.should.equal(AccessRights.Viewer);
+            users[0].ptz.should.be.true;
         });
 
-        it('should get user with operator access', async () => {
+        it('should get user with operator access', async function() {
             // Arrange
             responseBuilder.addUser('Joe', AccessRights.Operator, false);
 
@@ -232,13 +242,13 @@ describe('Users', () => {
             const users = await userAccounts.getAll();
 
             // Assert
-            expect(users.length).to.equal(1);
-            expect(users[0].name).to.equal('Joe');
-            expect(users[0].accessRights).to.equal(AccessRights.Operator);
-            expect(users[0].ptz).to.be.false;
+            users.length.should.equal(1);
+            users[0].name.should.equal('Joe');
+            users[0].accessRights.should.equal(AccessRights.Operator);
+            users[0].ptz.should.be.false;
         });
 
-        it('should get user with operator and PTZ access', async () => {
+        it('should get user with operator and PTZ access', async function() {
             // Arrange
             responseBuilder.addUser('Joe', AccessRights.Operator, true);
 
@@ -250,13 +260,13 @@ describe('Users', () => {
             const users = await userAccounts.getAll();
 
             // Assert
-            expect(users.length).to.equal(1);
-            expect(users[0].name).to.equal('Joe');
-            expect(users[0].accessRights).to.equal(AccessRights.Operator);
-            expect(users[0].ptz).to.be.true;
+            users.length.should.equal(1);
+            users[0].name.should.equal('Joe');
+            users[0].accessRights.should.equal(AccessRights.Operator);
+            users[0].ptz.should.be.true;
         });
 
-        it('should get user with administrator access', async () => {
+        it('should get user with administrator access', async function() {
             // Arrange
             responseBuilder.addUser('Joe', AccessRights.Administrator, false);
 
@@ -268,13 +278,13 @@ describe('Users', () => {
             const users = await userAccounts.getAll();
 
             // Assert
-            expect(users.length).to.equal(1);
-            expect(users[0].name).to.equal('Joe');
-            expect(users[0].accessRights).to.equal(AccessRights.Administrator);
-            expect(users[0].ptz).to.be.false;
+            users.length.should.equal(1);
+            users[0].name.should.equal('Joe');
+            users[0].accessRights.should.equal(AccessRights.Administrator);
+            users[0].ptz.should.be.false;
         });
 
-        it('should get user with administrator and PTZ access', async () => {
+        it('should get user with administrator and PTZ access', async function() {
             // Arrange
             responseBuilder.addUser('Joe', AccessRights.Administrator, true);
 
@@ -286,13 +296,13 @@ describe('Users', () => {
             const users = await userAccounts.getAll();
 
             // Assert
-            expect(users.length).to.equal(1);
-            expect(users[0].name).to.equal('Joe');
-            expect(users[0].accessRights).to.equal(AccessRights.Administrator);
-            expect(users[0].ptz).to.be.true;
+            users.length.should.equal(1);
+            users[0].name.should.equal('Joe');
+            users[0].accessRights.should.equal(AccessRights.Administrator);
+            users[0].ptz.should.be.true;
         });
 
-        it('should get users', async () => {
+        it('should get users', async function() {
             // Arrange
             responseBuilder.addUser('Jane', AccessRights.Administrator, true);
             responseBuilder.addUser('Franck', AccessRights.Operator, false);
@@ -306,50 +316,56 @@ describe('Users', () => {
             const users = await userAccounts.getAll();
 
             // Assert
-            expect(users.length).to.equal(3);
+            users.length.should.equal(3);
 
-            expect(users[0].name).to.equal('Jane');
-            expect(users[0].accessRights).to.equal(AccessRights.Administrator);
-            expect(users[0].ptz).to.be.true;
+            users[0].name.should.equal('Jane');
+            users[0].accessRights.should.equal(AccessRights.Administrator);
+            users[0].ptz.should.be.true;
 
-            expect(users[1].name).to.equal('Franck');
-            expect(users[1].accessRights).to.equal(AccessRights.Operator);
-            expect(users[1].ptz).to.be.false;
+            users[1].name.should.equal('Franck');
+            users[1].accessRights.should.equal(AccessRights.Operator);
+            users[1].ptz.should.be.false;
 
-            expect(users[2].name).to.equal('Joe');
-            expect(users[2].accessRights).to.equal(AccessRights.Viewer);
-            expect(users[2].ptz).to.be.true;
+            users[2].name.should.equal('Joe');
+            users[2].accessRights.should.equal(AccessRights.Viewer);
+            users[2].ptz.should.be.true;
         });
 
-        it('should throw exception if device is unresponsive', async () => {
+        it('should throw exception if device is unresponsive', async function() {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=get/)
                 .replyWithError(`Error: connect ETIMEDOUT ${connection.address}:${connection.port}`);
 
-            // Act
-            const fn = () => userAccounts.getAll();
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(RequestError);
+            try {
+                // Act
+                await userAccounts.getAll();
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(RequestError);
+            }
         });
 
-        it('should throw exception if user is unauthorized', async () => {
+        it('should throw exception if user is unauthorized', async function() {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=get/)
                 .reply(401);
 
-            // Act
-            const fn = () => userAccounts.getAll();
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(UnauthorizationError);
+            try {
+                // Act
+                await userAccounts.getAll();
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(UnauthorizationError);
+            }
         });
     });
 
-    describe('#update', () => {
-        it('should update user with viewer access', async () => {
+    describe('#update', function() {
+        it('should update user with viewer access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -361,10 +377,10 @@ describe('Users', () => {
             await userAccounts.update(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should update user with viewer and PTZ access', async () => {
+        it('should update user with viewer and PTZ access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, true);
 
@@ -376,10 +392,10 @@ describe('Users', () => {
             await userAccounts.update(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should update user with operator access', async () => {
+        it('should update user with operator access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Operator, false);
 
@@ -391,10 +407,10 @@ describe('Users', () => {
             await userAccounts.update(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should update user with operator and PTZ access', async () => {
+        it('should update user with operator and PTZ access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Operator, true);
 
@@ -406,10 +422,10 @@ describe('Users', () => {
             await userAccounts.update(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should update user with administrator access', async () => {
+        it('should update user with administrator access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Administrator, false);
 
@@ -421,10 +437,10 @@ describe('Users', () => {
             await userAccounts.update(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should update user with administrator and PTZ access', async () => {
+        it('should update user with administrator and PTZ access', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Administrator, true);
 
@@ -436,10 +452,10 @@ describe('Users', () => {
             await userAccounts.update(user);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should throw exception if user does not exist', async () => {
+        it('should throw exception if user does not exist', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -447,14 +463,17 @@ describe('Users', () => {
                 .get(/pwdgrp.cgi\?action=update/)
                 .reply(200, Generate.html('Error: consult the system log file.'));
 
-            // Act
-            const fn = () => userAccounts.update(user);
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(UnknownError);
+            try {
+                // Act
+                await userAccounts.update(user);
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(UnknownError);
+            }
         });
 
-        it('should throw exception if device is unresponsive', async () => {
+        it('should throw exception if device is unresponsive', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -462,14 +481,17 @@ describe('Users', () => {
                 .get(/pwdgrp.cgi\?action=update/)
                 .replyWithError(`Error: connect ETIMEDOUT ${connection.address}:${connection.port}`);
 
-            // Act
-            const fn = () => userAccounts.update(user);
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(RequestError);
+            try {
+                // Act
+                await userAccounts.update(user);
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(RequestError);
+            }
         });
 
-        it('should throw exception if user is unauthorized', async () => {
+        it('should throw exception if user is unauthorized', async function() {
             // Arrange
             const user = new User('Joe', 'secret', AccessRights.Viewer, false);
 
@@ -477,16 +499,19 @@ describe('Users', () => {
                 .get(/pwdgrp.cgi\?action=update/)
                 .reply(401);
 
-            // Act
-            const fn = () => userAccounts.update(user);
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(UnauthorizationError);
+            try {
+                // Act
+                await userAccounts.update(user);
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(UnauthorizationError);
+            }
         });
     });
 
-    describe('#remove', () => {
-        it('should remove user', async () => {
+    describe('#remove', function() {
+        it('should remove user', async function() {
             // Arrange
             const username = 'Joe';
 
@@ -498,46 +523,55 @@ describe('Users', () => {
             await userAccounts.remove(username);
 
             // Assert
-            expect(scope.isDone()).to.be.true;
+            scope.isDone().should.be.true;
         });
 
-        it('should throw exception if user does not exist', async () => {
+        it('should throw exception if user does not exist', async function() {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=remove/)
                 .reply(200, Generate.html('Error: consult the system log file.'));
 
-            // Act
-            const fn = () => userAccounts.remove('Joe');
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(UnknownError);
+            try {
+                // Act
+                await userAccounts.remove('Joe');
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(UnknownError);
+            }
         });
 
-        it('should throw exception if device is unresponsive', async () => {
+        it('should throw exception if device is unresponsive', async function() {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=remove/)
                 .replyWithError(`Error: connect ETIMEDOUT ${connection.address}:${connection.port}`);
 
-            // Act
-            const fn = () => userAccounts.remove('Joe');
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(RequestError);
+            try {
+                // Act
+                await userAccounts.remove('Joe');
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(RequestError);
+            }
         });
 
-        it('should throw exception if user is unauthorized', async () => {
+        it('should throw exception if user is unauthorized', async function() {
             // Arrange
             nock(connection.url)
                 .get(/pwdgrp.cgi\?action=remove/)
                 .reply(401);
 
-            // Act
-            const fn = () => userAccounts.remove('Joe');
-
-            // Assert
-            return expect(fn()).to.be.rejectedWith(UnauthorizationError);
+            try {
+                // Act
+                await userAccounts.remove('Joe');
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                error.should.be.instanceof(UnauthorizationError);
+            }
         });
     });
 });

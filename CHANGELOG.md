@@ -5,7 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### Added
+
+- Support for configuring parameters using the class `Parameters`
+
+### Removed
+
+- Support for Node.js v5 since v6 now is LTS
+
 ## [1.0.0] - 2017-06-03
 
 ### Added
-- Support for configuring user accounts
+- Support for configuring user accounts using the class `UserAccounts`

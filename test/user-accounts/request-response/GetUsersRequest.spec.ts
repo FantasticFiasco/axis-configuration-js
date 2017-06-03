@@ -1,20 +1,22 @@
-import { expect } from 'chai';
+import * as chai from 'chai';
 
 import { Connection, Protocol } from './../../../src';
 import { GetUsersRequest } from './../../../src/user-accounts/request-response/GetUsersRequest';
 
-describe('Get users request', () => {
+chai.should();
+
+describe('get users request', function() {
 
     const connection = new Connection(Protocol.Http, '1.2.3.4', 80, 'root', 'pass');
 
-    describe('#url', () => {
+    describe('#url', function() {
 
-        it('should return URL when getting all users', () => {
+        it('should return URL when getting all users', function() {
             // Act
             const request = new GetUsersRequest(connection);
 
             // Assert
-            expect(request.url).to.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=get`);
+            request.url.should.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=get`);
         });
     });
 });

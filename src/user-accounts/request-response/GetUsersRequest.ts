@@ -1,6 +1,6 @@
 import { Connection } from './../..';
+import { Request } from './../../shared/Request';
 import { GetUsersResponse } from './GetUsersResponse';
-import { Request } from './Request';
 
 export class GetUsersRequest extends Request {
     constructor(connection: Connection) {
