@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [2.0.0] - 2017-06-15
+
 ### Added
 
 - Support for configuring parameters using the class `Parameters`
