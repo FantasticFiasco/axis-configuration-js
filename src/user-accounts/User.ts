@@ -5,6 +5,14 @@ import { AccessRights } from './AccessRights';
  * Class describing a user.
  */
 export class User {
+    /**
+     * Initializes a new instance of the class.
+     * @param name The user account name (1-14 characters). Valid characters are a-z, A-Z and 0-9.
+     * @param password The unencrypted password (1-64 characters) for the account. ASCII characters
+     * from character code 32 to 126 are valid.
+     * @param accessRights The access rights for the user.
+     * @param ptz Whether user has access rights for PTZ control.
+     */
     constructor(
         /**
          * The user account name (1-14 characters). Valid characters are a-z, A-Z and 0-9.

@@ -1,15 +1,17 @@
-import { expect } from 'chai';
+import * as chai from 'chai';
 
 import { AccessRights, Connection, Protocol, User } from './../../../src';
 import { UpdateUserRequest } from './../../../src/user-accounts/request-response/UpdateUserRequest';
 
-describe('Update user request', () => {
+chai.should();
+
+describe('update user request', function() {
 
     const connection = new Connection(Protocol.Http, '1.2.3.4', 80, 'root', 'pass');
 
-    describe('#url', () => {
+    describe('#url', function() {
 
-        it('should return URL when updating to viewer access', () => {
+        it('should return URL when updating to viewer access', function() {
             // Arrange
             const user = new User('John', 'password', AccessRights.Viewer, false);
 
@@ -17,10 +19,10 @@ describe('Update user request', () => {
             const request = new UpdateUserRequest(connection, user);
 
             // Assert
-            expect(request.url).to.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=viewer`);
+            request.url.should.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=viewer`);
         });
 
-        it('should return URL when updating to viewer access and PTZ control', () => {
+        it('should return URL when updating to viewer access and PTZ control', function() {
             // Arrange
             const user = new User('John', 'password', AccessRights.Viewer, true);
 
@@ -28,10 +30,10 @@ describe('Update user request', () => {
             const request = new UpdateUserRequest(connection, user);
 
             // Assert
-            expect(request.url).to.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=viewer:ptz`);
+            request.url.should.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=viewer:ptz`);
         });
 
-        it('should return URL when updating to operator access', () => {
+        it('should return URL when updating to operator access', function() {
             // Arrange
             const user = new User('John', 'password', AccessRights.Operator, false);
 
@@ -39,10 +41,10 @@ describe('Update user request', () => {
             const request = new UpdateUserRequest(connection, user);
 
             // Assert
-            expect(request.url).to.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=operator:viewer`);
+            request.url.should.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=operator:viewer`);
         });
 
-        it('should return URL when updating to operator access and PTZ control', () => {
+        it('should return URL when updating to operator access and PTZ control', function() {
             // Arrange
             const user = new User('John', 'password', AccessRights.Operator, true);
 
@@ -50,10 +52,10 @@ describe('Update user request', () => {
             const request = new UpdateUserRequest(connection, user);
 
             // Assert
-            expect(request.url).to.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=operator:viewer:ptz`);
+            request.url.should.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=operator:viewer:ptz`);
         });
 
-        it('should return URL when updating to administrator access', () => {
+        it('should return URL when updating to administrator access', function() {
             // Arrange
             const user = new User('John', 'password', AccessRights.Administrator, false);
 
@@ -61,10 +63,10 @@ describe('Update user request', () => {
             const request = new UpdateUserRequest(connection, user);
 
             // Assert
-            expect(request.url).to.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=admin:operator:viewer`);
+            request.url.should.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=admin:operator:viewer`);
         });
 
-        it('should return URL when updating to administrator access and PTZ control', () => {
+        it('should return URL when updating to administrator access and PTZ control', function() {
             // Arrange
             const user = new User('John', 'password', AccessRights.Administrator, true);
 
@@ -72,7 +74,7 @@ describe('Update user request', () => {
             const request = new UpdateUserRequest(connection, user);
 
             // Assert
-            expect(request.url).to.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=admin:operator:viewer:ptz`);
+            request.url.should.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${user.name}&pwd=${user.password}&grp=users&sgrp=admin:operator:viewer:ptz`);
         });
     });
 });

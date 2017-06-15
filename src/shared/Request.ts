@@ -1,8 +1,7 @@
 import * as rp from 'request-promise-native';
 import * as errors from 'request-promise-native/errors';
 
-import { AccessRights, Connection, RequestError, UnauthorizationError } from './../..';
-import { ExpectationError } from './../../shared/expectations/ExpectationError';
+import { Connection, RequestError, UnauthorizationError } from './';
 
 export abstract class Request {
 
@@ -27,31 +26,6 @@ export abstract class Request {
             // Fallback
             throw error;
         }
-    }
-
-    protected toUserGroups(accessRights: AccessRights, ptz: boolean): string {
-        const userGroups: string[] = [];
-
-        switch (accessRights) {
-            case AccessRights.Administrator:
-                userGroups.push('admin');
-
-            case AccessRights.Operator:
-                userGroups.push('operator');
-
-            case AccessRights.Viewer:
-                userGroups.push('viewer');
-                break;
-
-            default:
-                throw new ExpectationError(`Unsupported access right: ${accessRights}`);
-        }
-
-        if (ptz) {
-            userGroups.push('ptz');
-        }
-
-        return userGroups.join(':');
     }
 
     private handleStatusCodeError(error) {

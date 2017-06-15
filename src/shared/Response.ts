@@ -1,13 +1,16 @@
 import * as cheerio from 'cheerio';
 
 export abstract class Response {
-    private readonly internalHtml: CheerioStatic;
+    private internalHtml?: CheerioStatic;
 
     protected constructor(protected readonly response: string) {
-        this.internalHtml = cheerio.load(response);
     }
 
     protected get html(): CheerioStatic {
+        if (!this.internalHtml) {
+            this.internalHtml = cheerio.load(this.response);
+        }
+
         return this.internalHtml;
     }
 

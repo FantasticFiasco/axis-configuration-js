@@ -1,6 +1,6 @@
 import { Connection } from './../..';
+import { Request } from './../../shared/Request';
 import { RemoveUserResponse } from './RemoveUserResponse';
-import { Request } from './Request';
 
 export class RemoveUserRequest extends Request {
     constructor(

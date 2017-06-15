@@ -1,15 +1,17 @@
-import { expect } from 'chai';
+import * as chai from 'chai';
 
 import { Connection, Protocol } from './../../../src';
 import { RemoveUserRequest } from './../../../src/user-accounts/request-response/RemoveUserRequest';
 
-describe('Remove user request', () => {
+chai.should();
+
+describe('remove user request', function() {
 
     const connection = new Connection(Protocol.Http, '1.2.3.4', 80, 'root', 'pass');
 
-    describe('#url', () => {
+    describe('#url', function() {
 
-        it('should return URL when removing user', () => {
+        it('should return URL when removing user', function() {
             // Arrange
             const username = 'John';
 
@@ -17,7 +19,7 @@ describe('Remove user request', () => {
             const request = new RemoveUserRequest(connection, username);
 
             // Assert
-            expect(request.url).to.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=remove&user=${username}`);
+            request.url.should.equal(`${connection.url}/axis-cgi/pwdgrp.cgi?action=remove&user=${username}`);
         })
     });
 });

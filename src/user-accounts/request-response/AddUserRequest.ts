@@ -1,6 +1,7 @@
 import { Connection, User } from './../..';
+import { Request } from './../../shared/Request';
 import { AddUserResponse } from './AddUserResponse';
-import { Request } from './Request';
+import { Converter } from './Converter';
 
 export class AddUserRequest extends Request {
     constructor(
@@ -16,6 +17,6 @@ export class AddUserRequest extends Request {
     }
 
     public get url(): string {
-        return `${this.connection.url}/axis-cgi/pwdgrp.cgi?action=add&user=${this.user.name}&pwd=${this.user.password}&grp=users&sgrp=${this.toUserGroups(this.user.accessRights, this.user.ptz)}&comment=${this.user.name}`;
+        return `${this.connection.url}/axis-cgi/pwdgrp.cgi?action=add&user=${this.user.name}&pwd=${this.user.password}&grp=users&sgrp=${Converter.toUserGroups(this.user.accessRights, this.user.ptz)}&comment=${this.user.name}`;
     }
 }

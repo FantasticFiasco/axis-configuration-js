@@ -10,17 +10,22 @@ import { UpdateUserRequest } from './request-response/UpdateUserRequest';
  * information and remove a user account.
  */
 export class UserAccounts {
+    /**
+     * Initializes a new instance of the class.
+     * @param connection The connection to the device.
+     */
     constructor(private readonly connection: Connection) {
     }
 
     /**
      * Adds a new user.
+     * @param user The user to add. Please note that the password must be specified.
      * @throws {UserAlreadyExistsError} User already exists.
      * @throws {UnauthorizedError} User is not authorized to perform operation.
      * @throws {RequestError} Request failed.
      * @throws {UnknownError} Error cause is unknown.
      */
-    public async add(user: User) {
+    public async add(user: User): Promise<void> {
         Expect.toBeDefined(user.password, 'Password must be specified.');
 
         const request = new AddUserRequest(this.connection, user);
@@ -45,11 +50,12 @@ export class UserAccounts {
 
     /**
      * Updates a user.
+     * @param user The user to update. Please note that the password must be specified.
      * @throws {UnauthorizedError} User is not authorized to perform operation.
      * @throws {RequestError} Request failed.
      * @throws {UnknownError} Error cause is unknown.
      */
-    public async update(user: User) {
+    public async update(user: User): Promise<void> {
         Expect.toBeDefined(user.password, 'Password must be specified.');
 
         const request = new UpdateUserRequest(this.connection, user);
@@ -60,11 +66,12 @@ export class UserAccounts {
 
     /**
      * Removes a user.
+     * @param username The name of the user to remove.
      * @throws {UnauthorizedError} User is not authorized to perform operation.
      * @throws {RequestError} Request failed.
      * @throws {UnknownError} Error cause is unknown.
      */
-    public async remove(username: string) {
+    public async remove(username: string): Promise<void> {
         const request = new RemoveUserRequest(this.connection, username);
         const response = await request.send();
 
