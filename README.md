@@ -23,7 +23,7 @@ A Node.js library written in TypeScript capable of configuring [Axis Communicati
 ## Super simple to use
 
 ```javascript
-const connection = new Connection(Protocol.Http, '192.168.1.102', 80, 'admin', '32naJzkJdZ!7*HK&Dz');
+const connection = new Connection(Protocol.Http, '192.168.1.102', 80, 'root', '32naJzkJdZ!7*HK&Dz');
 
 //// Parameters
 const parameters = new Parameters(connection);
