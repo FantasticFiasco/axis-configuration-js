@@ -1,4 +1,5 @@
-import { Expect } from './../shared/expectations/Expect';
+import * as expect from '@fantasticfiasco/expect';
+
 import { AccessRights } from './AccessRights';
 
 /**
@@ -33,13 +34,13 @@ export class User {
         readonly ptz: boolean) {
 
         // Valdate name
-        Expect.toBeOfLength(name, 1, 14, 'User name must be between 1-14 characters.');
-        Expect.toBeAlphanumeric(name, 'User name must only contain the characters a-z, A-Z and 0-9.');
+        expect.toBeTrue(name.length > 0 && name.length < 15, 'User name must be between 1-14 characters.');
+        expect.toBeAlphanumeric(name, 'User name must only contain the characters a-z, A-Z and 0-9.');
 
         // Validate password
         if (password !== undefined) {
-            Expect.toBeOfLength(password as string, 1, 64, 'Password must be between 1-64 characters.');
-            Expect.toBeAsciiCharacters(password as string, 32, 126, 'Password must only contain ASCII characters between 32 and 126');
+            expect.toBeTrue(password.length > 0 && password.length < 65, 'Password must be between 1-64 characters.');
+            expect.toBeCharCodes(password, 32, 126, 'Password must only contain ASCII characters between 32 and 126');
         }
     }
 }

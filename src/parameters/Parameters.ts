@@ -1,5 +1,6 @@
+import * as expect from '@fantasticfiasco/expect';
+
 import { Connection } from './..';
-import { Expect } from './../shared/expectations/Expect';
 import { GetParametersRequest } from './request-response/GetParametersRequest';
 import { UpdateParametersRequest } from './request-response/UpdateParametersRequest';
 
@@ -26,7 +27,7 @@ export class Parameters {
      * @throws {RequestError} Request failed.
      */
     public async get(...parameterGroups: string[]): Promise<{ [name: string]: string }> {
-        Expect.toBeTrue(parameterGroups.length > 0, 'At least one parameter group must be specied');
+        expect.toBeTrue(parameterGroups.length > 0, 'At least one parameter group must be specied');
 
         const request = new GetParametersRequest(this.connection, ...parameterGroups);
         const response = await request.send();
@@ -45,7 +46,7 @@ export class Parameters {
      * @throws {RequestError} Request failed.
      */
     public async update(parameters: { [name: string]: string }): Promise<void> {
-        Expect.toBeTrue(Object.keys(parameters).length > 0, 'At least one parameter must be specified');
+        expect.toBeTrue(Object.keys(parameters).length > 0, 'At least one parameter must be specified');
 
         const request = new UpdateParametersRequest(this.connection, parameters);
         const response = await request.send();

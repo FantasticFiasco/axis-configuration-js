@@ -1,5 +1,6 @@
+import { ExpectationError } from '@fantasticfiasco/expect';
+
 import { AccessRights } from './../..';
-import { ExpectationError } from './../../shared/expectations/ExpectationError';
 
 export class Converter {
 

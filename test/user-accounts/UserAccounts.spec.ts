@@ -1,5 +1,6 @@
 import * as chai from 'chai';
 import * as nock from 'nock';
+import { ExpectationError } from '@fantasticfiasco/expect';
 
 import {
     AccessRights,
@@ -11,7 +12,6 @@ import {
     UnknownError,
     UserAccounts,
     UserAlreadyExistsError } from './../../src';
-import { ExpectationError } from './../../src/shared/expectations/ExpectationError';
 import { Generate } from './Generate';
 import { GetUsersResponseBuilder } from './request-response/GetUsersResponseBuilder';
 
