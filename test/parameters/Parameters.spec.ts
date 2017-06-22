@@ -1,5 +1,6 @@
 import * as chai from 'chai';
 import * as nock from 'nock';
+import { ExpectationError } from '@fantasticfiasco/expect';
 
 import {
     Connection,
@@ -8,7 +9,6 @@ import {
     RequestError,
     UnauthorizationError,
     UpdateParametersError } from './../../src';
-import { ExpectationError } from './../../src/shared/expectations/ExpectationError';
 
 const should = chai.should();
 

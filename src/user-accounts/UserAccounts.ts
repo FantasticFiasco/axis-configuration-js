@@ -1,5 +1,6 @@
+import * as expect from '@fantasticfiasco/expect';
+
 import { Connection, User } from './..';
-import { Expect } from './../shared/expectations/Expect';
 import { AddUserRequest } from './request-response/AddUserRequest';
 import { GetUsersRequest } from './request-response/GetUsersRequest';
 import { RemoveUserRequest } from './request-response/RemoveUserRequest';
@@ -26,7 +27,7 @@ export class UserAccounts {
      * @throws {UnknownError} Error cause is unknown.
      */
     public async add(user: User): Promise<void> {
-        Expect.toBeDefined(user.password, 'Password must be specified.');
+        expect.toExist(user.password, 'Password must be specified.');
 
         const request = new AddUserRequest(this.connection, user);
         const response = await request.send();
@@ -56,7 +57,7 @@ export class UserAccounts {
      * @throws {UnknownError} Error cause is unknown.
      */
     public async update(user: User): Promise<void> {
-        Expect.toBeDefined(user.password, 'Password must be specified.');
+        expect.toExist(user.password, 'Password must be specified.');
 
         const request = new UpdateUserRequest(this.connection, user);
         const response = await request.send();

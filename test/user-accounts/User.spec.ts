@@ -1,7 +1,7 @@
 import * as chai from 'chai';
+import { ExpectationError } from '@fantasticfiasco/expect';
 
 import { AccessRights, User } from './../../src';
-import { ExpectationError } from './../../src/shared/expectations/ExpectationError';
 import { Generate } from './Generate';
 
 chai.should();
