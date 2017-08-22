@@ -59,9 +59,9 @@
     "@types/form-data" "*"
     "@types/node" "*"
 
-"@types/request@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@types/request/-/request-2.0.1.tgz#5fb3b273a19a67a698abfd38ece5cd8ef946bc6d"
+"@types/request@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/request/-/request-2.0.2.tgz#d2cb5684e994e744afbc2c90df989b904133ff65"
   dependencies:
     "@types/form-data" "*"
     "@types/node" "*"
