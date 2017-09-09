@@ -24,9 +24,9 @@
   version "4.14.74"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.74.tgz#ac3bd8db988e7f7038e5d22bd76a7ba13f876168"
 
-"@types/mocha@2.2.42":
-  version "2.2.42"
-  resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.42.tgz#ab769f51d37646b6fe8d4a086a98c285b1fab3f5"
+"@types/mocha@2.2.43":
+  version "2.2.43"
+  resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.43.tgz#03c54589c43ad048cbcbfd63999b55d0424eec27"
 
 "@types/nock@8.2.1":
   version "8.2.1"
@@ -34,9 +34,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*":
-  version "8.0.26"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.26.tgz#4d58be925306fd22b1141085535a0268b8beb189"
+"@types/node@*", "@types/node@8.0.27":
+  version "8.0.27"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.27.tgz#13fbe7e92afeecebb843d7cea6c15b521e0000e1"
 
 "@types/node@8.0.28":
   version "8.0.28"
