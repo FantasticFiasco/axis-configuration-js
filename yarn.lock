@@ -1487,9 +1487,9 @@ nan@^2.3.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
 
-nock@9.0.15:
-  version "9.0.15"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-9.0.15.tgz#4166f68f0f0c00d115af32c50a75390cb807a22f"
+nock@9.0.17:
+  version "9.0.17"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-9.0.17.tgz#29ae58972c58dc33cc69108a135d98b2d14d95f2"
   dependencies:
     chai ">=1.9.2 <4.0.0"
     debug "^2.2.0"
