@@ -20,9 +20,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@4.14.74":
-  version "4.14.74"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.74.tgz#ac3bd8db988e7f7038e5d22bd76a7ba13f876168"
+"@types/lodash@4.14.75":
+  version "4.14.75"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.75.tgz#884aa10790d3a608efd522491af8f08bd764142e"
 
 "@types/mocha@2.2.43":
   version "2.2.43"
