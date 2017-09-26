@@ -46,9 +46,9 @@
   version "6.0.78"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.78.tgz#5d4a3f579c1524e01ee21bf474e6fba09198f470"
 
-"@types/request-promise-native@1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@types/request-promise-native/-/request-promise-native-1.0.6.tgz#ab234405070074c5f98dbe943ae2960cbf1334d6"
+"@types/request-promise-native@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@types/request-promise-native/-/request-promise-native-1.0.7.tgz#46479ab9aa467299095beca8af41e8e2511ec1e0"
   dependencies:
     "@types/request" "*"
 
