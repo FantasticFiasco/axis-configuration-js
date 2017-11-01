@@ -10,14 +10,18 @@ export class AddUserResponse extends Response {
     }
 
     public assertSuccess() {
-        const body = this.html('body').html();
+        const body: string | null = this.html('body').html();
+
+        if (body === null) {
+            throw new UnknownError('No HTML in response body');
+        }
 
         this.handleUserAlreadyExistsError(body);
         this.handleUnknownError(body);
     }
 
     private handleUserAlreadyExistsError(body: string) {
-        if  (AddUserResponse.UserAlreadyExistsResponse.test(body)) {
+        if (AddUserResponse.UserAlreadyExistsResponse.test(body)) {
             throw new UserAlreadyExistsError();
         }
     }
