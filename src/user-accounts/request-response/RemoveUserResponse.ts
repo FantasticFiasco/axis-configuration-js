@@ -11,6 +11,10 @@ export class RemoveUserResponse extends Response {
     public assertSuccess() {
         const body = this.html('body').html();
 
+        if (body === null) {
+            throw new UnknownError('No HTML in response body');
+        }
+
         this.handleUnknownError(body);
     }
 
