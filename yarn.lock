@@ -1500,9 +1500,9 @@ nan@^2.3.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
 
-nock@9.0.26:
-  version "9.0.26"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-9.0.26.tgz#aace5ee79ff2372c4a770f4921a4bac08588a29d"
+nock@9.0.28:
+  version "9.0.28"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-9.0.28.tgz#99b879ce0e4827f421e42e47356287d6b4c2b58c"
   dependencies:
     chai ">=1.9.2 <4.0.0"
     debug "^2.2.0"
