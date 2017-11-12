@@ -20,9 +20,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@4.14.84":
-  version "4.14.84"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.84.tgz#ede7e6bbb4f0d35adf8b32d57b44bf125f7a2a41"
+"@types/lodash@4.14.85":
+  version "4.14.85"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.85.tgz#a16fbf942422f6eca5622b6910492c496c35069b"
 
 "@types/mocha@2.2.44":
   version "2.2.44"
@@ -59,9 +59,9 @@
     "@types/form-data" "*"
     "@types/node" "*"
 
-"@types/request@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@types/request/-/request-2.0.7.tgz#a2aa5a57317c21971d9b024e393091ab2c99ab98"
+"@types/request@2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@types/request/-/request-2.0.8.tgz#424d3de255868107ed4dd6695c65c5f1766aba80"
   dependencies:
     "@types/form-data" "*"
     "@types/node" "*"
