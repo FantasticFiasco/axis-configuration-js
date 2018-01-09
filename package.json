@@ -55,7 +55,7 @@
     "@types/lodash": "4.14.92",
     "@types/mocha": "2.2.46",
     "@types/nock": "9.1.1",
-    "@types/node": "8.5.8",
+    "@types/node": "9.3.0",
     "@types/request": "2.0.9",
     "@types/request-promise-native": "1.0.10",
     "chai": "4.1.2",
