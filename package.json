@@ -52,7 +52,7 @@
   "devDependencies": {
     "@types/chai": "4.1.2",
     "@types/cheerio": "0.22.7",
-    "@types/lodash": "4.14.95",
+    "@types/lodash": "4.14.96",
     "@types/mocha": "2.2.47",
     "@types/nock": "9.1.2",
     "@types/node": "9.3.0",
