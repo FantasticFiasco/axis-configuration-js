@@ -45,7 +45,7 @@
   "dependencies": {
     "@fantasticfiasco/expect": "1.0.0",
     "cheerio": "1.0.0-rc.2",
-    "lodash": "4.17.9",
+    "lodash": "4.17.11",
     "request": "2.88.0",
     "request-promise-native": "1.0.5"
   },
