@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/FantasticFiasco/axis-configuration.svg?branch=master)](https://travis-ci.org/FantasticFiasco/axis-configuration)
 [![Coverage Status](https://coveralls.io/repos/github/FantasticFiasco/axis-configuration/badge.svg)](https://coveralls.io/github/FantasticFiasco/axis-configuration)
 [![npm version](https://img.shields.io/npm/v/axis-configuration.svg)](https://www.npmjs.com/package/axis-configuration)
-[![Greenkeeper badge](https://badges.greenkeeper.io/FantasticFiasco/axis-configuration.svg)](https://greenkeeper.io/)
 [![dependencies Status](https://david-dm.org/FantasticFiasco/axis-configuration/status.svg)](https://david-dm.org/FantasticFiasco/axis-configuration)
 [![devDependencies Status](https://david-dm.org/FantasticFiasco/axis-configuration/dev-status.svg)](https://david-dm.org/FantasticFiasco/axis-configuration?type=dev)
 
