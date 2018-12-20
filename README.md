@@ -72,6 +72,8 @@ await userAccounts.remove(user.name);
 
 ```sh
 npm install axis-configuration
+# or
+yarn add axis-configuration
 ```
 
 ## Prerequisites
