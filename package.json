@@ -62,7 +62,7 @@
     "cpx": "1.5.0",
     "istanbul": "0.4.5",
     "mocha": "5.2.0",
-    "nock": "10.0.5",
+    "nock": "10.0.6",
     "remap-istanbul": "0.12.0",
     "rimraf": "2.6.3",
     "tslint": "5.12.0",
