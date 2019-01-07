@@ -17,10 +17,10 @@ script:
   - yarn lint
 
 deploy:
+  skip_cleanup: true
   provider: npm
   email: mattias.kindborg@gmail.com
   api_key:
     secure: Om9pukumvdhsSwDuhqzWIzMFkWsxnXLfyp1RbFjJXtS4D12aqVF3FC0nUwoQOe8mHnObcfw67uVtdohX9BR9rowhpqXflyOl6se+pwK/lKRfrdcKF7zdlbpS38s8wK7VJWtR/FpIkQ8DNnZLnF3QJUXHY/YgOt7czmF8dBXHQHHY4kWyf4pRze67I/4V5Pjf0ZipnJ+rDmoUE6reL5tClnoNbIY/lvh8mjPTWPej5L1oY89t39FeeRPqhAFIovDcdUxYHQqvQdai5soMaL27I0xBSv/VIY4qNl3s7i81ux/RHpMtfb6rRZitqYVjuMh21jrlBHlVdonK4CfvMuglOQjf8v4L7qBgL2LOYLiMWAMhM6if9BJb7L7DjtpGUfHx4emuwzgDG+H6LHCmr4io1CDIP4p8MVqELKhLJCYiXsFGRVY4Han9KSuWBHxl1jb6Nf1jVNVNfR/yZGBYiUgw53huIWliox1WU7Ged3C1wSC5zJqUzqWLwN0uoJABzPUonIc2hEz+fxUM9v+W5/+tSVGVCh/fnPNlBSwf1ScN7BOTQ6ZLr65Dvk9qHaOM/97AQl22OcSTLfCcxoTVp/kmgza1jWBojTwXcH3YxcLYNNaXcmTL0TPk6MBgSgRVf85XNX33XyST+CpIsWCsmoCqXY3KeGxZ0fpP3fPSoZm5m6g=
   on:
     tags: true
-    repo: FantasticFiasco/axis-configuration
