@@ -68,6 +68,7 @@
     "typescript": "3.3.3333"
   },
   "resolutions": {
+    "lodash": ">=4.17.11",
     "sshpk": ">=1.13.2"
   }
 }
