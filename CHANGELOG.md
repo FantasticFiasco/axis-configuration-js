@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### :policeman: Security
 
 - Security vulnerability in transient dependency `sshpk`
+- Security vulnerability in transient dependency `lodash`
 
 ## [2.0.2] - 2019-01-07
 
