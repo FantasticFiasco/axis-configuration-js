@@ -74,10 +74,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.78.tgz#5d4a3f579c1524e01ee21bf474e6fba09198f470"
   integrity sha512-+vD6E8ixntRzzZukoF3uP1iV+ZjVN3koTcaeK+BEoc/kSfGbLDIGC7RmCaUgVpUfN6cWvfczFRERCyKM9mkvXg==
 
-"@types/request-promise-native@1.0.11":
-  version "1.0.11"
-  resolved "https://registry.yarnpkg.com/@types/request-promise-native/-/request-promise-native-1.0.11.tgz#a6e9505d9ad2348f9f694f07085d021e7870000e"
-  integrity sha512-Mf794yze4sXVd1u5lW548+pZZHnZ1F7fEIs68f6Ahr0CFtukGaXDfoTT777kGAb0ERJxVvmD51vLr1yzE8SYrg==
+"@types/request-promise-native@1.0.16":
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/@types/request-promise-native/-/request-promise-native-1.0.16.tgz#a326a6fb541da63c6c713293c1935e54b7d84d3b"
+  integrity sha512-gbLf6cg1XGBU8BObOgs5VkCQo5JFz2GstgZjyE4FRbig/jiCEdiynu2fCzJlw3qYPuoj59spKnvuRLN4PsMvhA==
   dependencies:
     "@types/request" "*"
 
