@@ -69,6 +69,7 @@
   },
   "resolutions": {
     "handlebars": ">=4.0.14",
+    "js-yaml": ">=3.13.1",
     "lodash": ">=4.17.11",
     "sshpk": ">=1.13.2"
   }
