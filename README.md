@@ -1,10 +1,10 @@
 # axis-configuration
 
-[![Build Status](https://travis-ci.org/FantasticFiasco/axis-configuration.svg?branch=master)](https://travis-ci.org/FantasticFiasco/axis-configuration)
-[![Coverage Status](https://coveralls.io/repos/github/FantasticFiasco/axis-configuration/badge.svg)](https://coveralls.io/github/FantasticFiasco/axis-configuration)
+[![Build Status](https://travis-ci.org/FantasticFiasco/axis-configuration-js.svg?branch=master)](https://travis-ci.org/FantasticFiasco/axis-configuration-js)
+[![Coverage Status](https://coveralls.io/repos/github/FantasticFiasco/axis-configuration-js/badge.svg)](https://coveralls.io/github/FantasticFiasco/axis-configuration-js)
 [![npm version](https://img.shields.io/npm/v/axis-configuration.svg)](https://www.npmjs.com/package/axis-configuration)
-[![dependencies Status](https://david-dm.org/FantasticFiasco/axis-configuration/status.svg)](https://david-dm.org/FantasticFiasco/axis-configuration)
-[![devDependencies Status](https://david-dm.org/FantasticFiasco/axis-configuration/dev-status.svg)](https://david-dm.org/FantasticFiasco/axis-configuration?type=dev)
+[![dependencies Status](https://david-dm.org/FantasticFiasco/axis-configuration-js/status.svg)](https://david-dm.org/FantasticFiasco/axis-configuration-js)
+[![devDependencies Status](https://david-dm.org/FantasticFiasco/axis-configuration-js/dev-status.svg)](https://david-dm.org/FantasticFiasco/axis-configuration-js?type=dev)
 
 A Node.js library written in TypeScript capable of configuring [Axis Communication](http://www.axis.com) cameras.
 
