@@ -61,7 +61,7 @@
     "coveralls": "3.0.7",
     "istanbul": "0.4.5",
     "mocha": "6.2.2",
-    "nock": "11.5.0",
+    "nock": "11.6.0",
     "remap-istanbul": "0.13.0",
     "rimraf": "3.0.0",
     "tslint": "5.20.0",
