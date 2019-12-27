@@ -1,9 +1,14 @@
 # Change Log
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+### :policeman: Security
+
+- Security vulnerability in transient dependency `handlebars`
 
 ## [2.0.6] - 2019-07-14
 
@@ -56,4 +61,5 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ## [1.0.0] - 2017-06-03
 
 ### :zap: Added
+
 - Support for configuring user accounts using the class `UserAccounts`
