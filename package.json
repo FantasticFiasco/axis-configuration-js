@@ -1,6 +1,6 @@
 {
   "name": "axis-configuration",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "A Node.js library written in TypeScript capable of configuring Axis Communication cameras.",
   "keywords": [
     "axis",
