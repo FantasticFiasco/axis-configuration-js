@@ -52,7 +52,7 @@
     "@types/chai": "4.2.10",
     "@types/cheerio": "0.22.16",
     "@types/lodash": "4.14.149",
-    "@types/mocha": "7.0.1",
+    "@types/mocha": "7.0.2",
     "@types/nock": "10.0.3",
     "@types/node": "13.7.7",
     "@types/request-promise-native": "1.0.11",
