@@ -10,13 +10,13 @@
     "configuration",
     "vapix"
   ],
-  "homepage": "https://github.com/FantasticFiasco/axis-configuration",
+  "homepage": "https://github.com/FantasticFiasco/axis-configuration-js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FantasticFiasco/axis-configuration.git"
+    "url": "https://github.com/FantasticFiasco/axis-configuration-js.git"
   },
   "bugs": {
-    "url": "https://github.com/FantasticFiasco/axis-configuration/issues"
+    "url": "https://github.com/FantasticFiasco/axis-configuration-js/issues"
   },
   "author": "Mattias Kindborg <mattias.kindborg@gmail.com> (https://twitter.com/FantasticFiasco)",
   "license": "Apache-2.0",
