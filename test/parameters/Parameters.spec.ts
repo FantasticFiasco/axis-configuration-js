@@ -1,4 +1,3 @@
-import * as chai from 'chai';
 import * as nock from 'nock';
 import { ExpectationError } from '@fantasticfiasco/expect';
 
@@ -10,19 +9,17 @@ import {
     UnauthorizationError,
     UpdateParametersError } from './../../src';
 
-const should = chai.should();
-
-describe('parameters', function() {
+describe('parameters', () => {
 
     const connection = new Connection(Protocol.Http, '1.2.3.4', 80, 'root', 'pass');
     const parameters = new Parameters(connection);
 
-    afterEach('after each parameter test', function() {
+    afterEach(() => {
         nock.cleanAll();
     });
 
-    describe('#get', function() {
-        it('should get single parameter', async function() {
+    describe('#get', () => {
+        test('should get single parameter', async () => {
             // Arrange
             const name = 'Network.Bonjour.FriendlyName';
             const value = 'Main Entrance';
@@ -35,10 +32,10 @@ describe('parameters', function() {
             const root = await parameters.get(name);
 
             // Assert
-            root[name].should.equal(value);
+            expect(root[name]).toBe(value);
         });
 
-        it('should get multiple parameters', async function() {
+        test('should get multiple parameters', async () => {
             // Arrange
             const name1 = 'Network.Bonjour.FriendlyName';
             const value1 = 'Main Entrance';
@@ -53,11 +50,11 @@ describe('parameters', function() {
             const root = await parameters.get(name1, name2);
 
             // Assert
-            root[name1].should.equal(value1);
-            root[name2].should.equal(value2);
+            expect(root[name1]).toBe(value1);
+            expect(root[name2]).toBe(value2);
         });
 
-        it('should trim single parameter', async function() {
+        test('should trim single parameter', async () => {
             // Arrange
             const name = 'Network.Bonjour.FriendlyName';
             const value = 'Main Entrance';
@@ -70,10 +67,10 @@ describe('parameters', function() {
             const root = await parameters.get(name);
 
             // Assert
-            root[name].should.equal(value);
+            expect(root[name]).toBe(value);
         });
 
-        it('should trim multiple parameters', async function() {
+        test('should trim multiple parameters', async () => {
             // Arrange
             const name1 = 'Network.Bonjour.FriendlyName';
             const value1 = 'Main Entrance';
@@ -88,11 +85,11 @@ describe('parameters', function() {
             const root = await parameters.get(name1, name2);
 
             // Assert
-            root[name1].should.equal(value1);
-            root[name2].should.equal(value2);
+            expect(root[name1]).toBe(value1);
+            expect(root[name2]).toBe(value2);
         });
 
-        it('should not get single unknown parameter', async function() {
+        test('should not get single unknown parameter', async () => {
             // Arrange
             const name = 'Unknown.Parameter';
 
@@ -104,10 +101,10 @@ describe('parameters', function() {
             const root = await parameters.get(name);
 
             // Assert
-            should.not.exist(root[name]);
+            expect(root[name]).toBeFalsy();
         });
 
-        it('should not get multiple unknown parameters', async function() {
+        test('should not get multiple unknown parameters', async () => {
             // Arrange
             const name1 = 'Unknown.Parameter1';
             const name2 = 'Unknown.Parameter2';
@@ -120,11 +117,11 @@ describe('parameters', function() {
             const root = await parameters.get(name1, name2);
 
             // Assert
-            should.not.exist(root[name1]);
-            should.not.exist(root[name2]);
+            expect(root[name1]).toBeFalsy();
+            expect(root[name2]).toBeFalsy();
         });
 
-        it('should get a mixture of known and unknown parameters', async function() {
+        test('should get a mixture of known and unknown parameters', async () => {
             // Arrange
             const name1 = 'Network.Bonjour.FriendlyName';
             const value1 = 'Main Entrance';
@@ -138,22 +135,22 @@ describe('parameters', function() {
             const root = await parameters.get(name1, name2);
 
             // Assert
-            root[name1].should.equal(value1);
-            should.not.exist(root[name2]);
+            expect(root[name1]).toBe(value1);
+            expect(root[name2]).toBeFalsy();
         });
 
-        it('should throw exception if no parameter is specified', async function() {
+        test('should throw exception if no parameter is specified', async () => {
             try {
                 // Act
                 await parameters.get();
                 throw new Error('This exception should not be thrown');
             } catch (error) {
                 // Assert
-                error.should.be.instanceof(ExpectationError);
+                expect(error).toBeInstanceOf(ExpectationError);
             }
         });
 
-        it('should throw exception if device is unresponsive', async function() {
+        test('should throw exception if device is unresponsive', async () => {
             // Arrange
             nock(connection.url)
                 .get(/param.cgi\?action=list/)
@@ -165,11 +162,11 @@ describe('parameters', function() {
                 throw new Error('This exception should not be thrown');
             } catch (error) {
                 // Assert
-                error.should.be.instanceof(RequestError);
+                expect(error).toBeInstanceOf(RequestError);
             }
         });
 
-        it('should throw exception if user is unauthorized', async function() {
+        test('should throw exception if user is unauthorized', async () => {
             // Arrange
             nock(connection.url)
                 .get(/param.cgi\?action=list/)
@@ -181,13 +178,13 @@ describe('parameters', function() {
                 throw new Error('This exception should not be thrown');
             } catch (error) {
                 // Assert
-                error.should.be.instanceof(UnauthorizationError);
+                expect(error).toBeInstanceOf(UnauthorizationError);
             }
         });
     });
 
-    describe('#update', function() {
-        it('should update single parameter', async function() {
+    describe('#update', () => {
+        test('should update single parameter', async () => {
             // Arrange
             const scope = nock(connection.url)
                 .get(/param.cgi\?action=update/)
@@ -197,10 +194,10 @@ describe('parameters', function() {
             await parameters.update({'Network.Bonjour.FriendlyName': 'Main Entrance'});
 
             // Assert
-            scope.isDone().should.be.true;
+            expect(scope.isDone()).toBe(true);
         });
 
-        it('should update multiple parameters', async function() {
+        test('should update multiple parameters', async () => {
             // Arrange
             const scope = nock(connection.url)
                 .get(/param.cgi\?action=update/)
@@ -213,10 +210,10 @@ describe('parameters', function() {
             });
 
             // Assert
-            scope.isDone().should.be.true;
+            expect(scope.isDone()).toBe(true);
         });
 
-        it('should not update single unknown parameter', async function() {
+        test('should not update single unknown parameter', async () => {
             // Arrange
             const name = 'Unknown.Parameter';
             const value = 'Value';
@@ -231,12 +228,12 @@ describe('parameters', function() {
                 throw new Error('This exception should not be thrown');
             } catch (error) {
                 // Assert
-                error.should.instanceof(UpdateParametersError);
-                error.parameterNames.should.deep.equal([ name ]);
+                expect(error).toBeInstanceOf(UpdateParametersError);
+                expect(error.parameterNames).toEqual([ name ]);
             }
         });
 
-        it('should not update multiple unknown parameters', async function() {
+        test('should not update multiple unknown parameters', async () => {
             // Arrange
             const name1 = 'Unknown.Parameter1';
             const value1 = 'Value1';
@@ -253,43 +250,49 @@ describe('parameters', function() {
                 throw new Error('This exception should not be thrown');
             } catch (error) {
                 // Assert
-                error.should.instanceof(UpdateParametersError);
-                error.parameterNames.should.deep.equal([ name1, name2 ]);
+                expect(error).toBeInstanceOf(UpdateParametersError);
+                expect(error.parameterNames).toEqual([ name1, name2 ]);
             }
         });
 
-        it('should update a mixture of known and unknown parameters', async function() {
-            // Arrange
-            const name = 'Unknown.Parameter';
-            const value = 'Value';
+        test(
+            'should update a mixture of known and unknown parameters',
+            async () => {
+                // Arrange
+                const name = 'Unknown.Parameter';
+                const value = 'Value';
 
-            nock(connection.url)
-                .get(/param.cgi\?action=update/)
-                .reply(200, `# Error: Error setting '${name}' to '${value}'!\r\n`);
+                nock(connection.url)
+                    .get(/param.cgi\?action=update/)
+                    .reply(200, `# Error: Error setting '${name}' to '${value}'!\r\n`);
 
-            try {
-                // Act
-                await parameters.update({ 'Network.Bonjour.FriendlyName': 'Main Entrance', name: value });
-                throw new Error('This exception should not be thrown');
-            } catch (error) {
-                // Assert
-                error.should.instanceof(UpdateParametersError);
-                error.parameterNames.should.deep.equal([ name ]);
+                try {
+                    // Act
+                    await parameters.update({ 'Network.Bonjour.FriendlyName': 'Main Entrance', name: value });
+                    throw new Error('This exception should not be thrown');
+                } catch (error) {
+                    // Assert
+                    expect(error).toBeInstanceOf(UpdateParametersError);
+                    expect(error.parameterNames).toEqual([ name ]);
+                }
             }
-        });
+        );
 
-        it('should throw exception if no parameters are specified', async function() {
-            try {
-                // Act
-                await parameters.update({});
-                throw new Error('This exception should not be thrown');
-            } catch (error) {
-                // Assert
-                error.should.instanceof(ExpectationError);
+        test(
+            'should throw exception if no parameters are specified',
+            async () => {
+                try {
+                    // Act
+                    await parameters.update({});
+                    throw new Error('This exception should not be thrown');
+                } catch (error) {
+                    // Assert
+                    expect(error).toBeInstanceOf(ExpectationError);
+                }
             }
-        });
+        );
 
-        it('should throw exception if device is unresponsive', async function() {
+        test('should throw exception if device is unresponsive', async () => {
             // Arrange
             nock(connection.url)
                 .get(/param.cgi\?action=update/)
@@ -301,11 +304,11 @@ describe('parameters', function() {
                 throw new Error('This exception should not be thrown');
             } catch (error) {
                 // Assert
-                error.should.be.instanceof(RequestError);
+                expect(error).toBeInstanceOf(RequestError);
             }
         });
 
-        it('should throw exception if user is unauthorized', async function() {
+        test('should throw exception if user is unauthorized', async () => {
             // Arrange
             nock(connection.url)
                 .get(/param.cgi\?action=update/)
@@ -317,7 +320,7 @@ describe('parameters', function() {
                 throw new Error('This exception should not be thrown');
             } catch (error) {
                 // Assert
-                error.should.be.instanceof(UnauthorizationError);
+                expect(error).toBeInstanceOf(UnauthorizationError);
             }
         });
     });
