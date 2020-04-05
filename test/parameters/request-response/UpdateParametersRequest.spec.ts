@@ -1,17 +1,13 @@
-import * as chai from 'chai';
-
 import { Connection, Protocol } from './../../../src';
 import { UpdateParametersRequest } from './../../../src/parameters/request-response/UpdateParametersRequest';
 
-chai.should();
-
-describe('update parameters request', function() {
+describe('update parameters request', () => {
 
     const connection = new Connection(Protocol.Http, '1.2.3.4', 80, 'root', 'pass');
 
-    describe('#url', function() {
+    describe('#url', () => {
 
-        it('should return URL when updating single parameter', function() {
+        test('should return URL when updating single parameter', () => {
             // Arrange
             const parameters = {
                 'Network.Bonjour.FriendlyName': 'Lobby'
@@ -21,10 +17,12 @@ describe('update parameters request', function() {
             const request = new UpdateParametersRequest(connection, parameters);
 
             // Assert
-            request.url.should.equal(`${connection.url}/axis-cgi/param.cgi?action=update&Network.Bonjour.FriendlyName=Lobby`);
+            expect(request.url).toBe(
+                `${connection.url}/axis-cgi/param.cgi?action=update&Network.Bonjour.FriendlyName=Lobby`
+            );
         });
 
-        it('should return URL when updating multiple parameters', function() {
+        test('should return URL when updating multiple parameters', () => {
             // Arrange
             const parameters = {
                 'Network.Bonjour.FriendlyName': 'Lobby',
@@ -35,7 +33,9 @@ describe('update parameters request', function() {
             const request = new UpdateParametersRequest(connection, parameters);
 
             // Assert
-            request.url.should.equal(`${connection.url}/axis-cgi/param.cgi?action=update&Network.Bonjour.FriendlyName=Lobby&Network.UPnP.FriendlyName=Lobby`);
+            expect(request.url).toBe(
+                `${connection.url}/axis-cgi/param.cgi?action=update&Network.Bonjour.FriendlyName=Lobby&Network.UPnP.FriendlyName=Lobby`
+            );
         });
     });
 });
