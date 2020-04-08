@@ -187,7 +187,7 @@ describe('users', () => {
 
         let responseBuilder: GetUsersResponseBuilder;
 
-        beforeEach('before each #getAll test', () => {
+        beforeEach(() => {
             responseBuilder = new GetUsersResponseBuilder();
         });
 
