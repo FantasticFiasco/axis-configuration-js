@@ -3,7 +3,7 @@ import * as https from 'https';
 import { Protocol } from './Protocol';
 
 /**
- * Interface describing optional options for a connection.
+ * Interface describing options for a connection.
  */
 export interface Options {
     /**
@@ -38,7 +38,7 @@ export class Connection {
          */
         public readonly password: string,
         /**
-         * The optional options for the connection to the device.
+         * The options for the connection to the device.
          */
         public readonly options?: Options) {
     }
