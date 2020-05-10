@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [2.1.0] - 2020-05-10
+
 ### :zap: Added
 
 - Support for specifying option `http.Agent` or `https.Agent` when creating a new `Connection`
