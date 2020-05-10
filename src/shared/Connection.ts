@@ -1,4 +1,16 @@
+import * as http from 'http';
+import * as https from 'https';
 import { Protocol } from './Protocol';
+
+/**
+ * Interface describing options for a connection.
+ */
+export interface Options {
+    /**
+     * The HTTP or HTTPS agent used when opening the connection.
+     */
+    agent?: http.Agent | https.Agent;
+}
 
 /**
  * Class describing a connection to a device.
@@ -24,7 +36,11 @@ export class Connection {
         /**
          * The password.
          */
-        public readonly password: string) {
+        public readonly password: string,
+        /**
+         * The options for the connection to the device.
+         */
+        public readonly options?: Options) {
     }
 
     /**

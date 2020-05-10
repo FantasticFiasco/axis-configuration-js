@@ -8,13 +8,14 @@ export abstract class Request {
     protected constructor(protected readonly connection: Connection) {
     }
 
-    protected async get(url): Promise<string> {
+    protected async get(url: string): Promise<string> {
         const options: rp.RequestPromiseOptions = {
             auth: {
                 user: this.connection.username,
                 pass: this.connection.password,
                 sendImmediately: false,
             },
+            agent: this.connection.options?.agent,
         };
 
         try {

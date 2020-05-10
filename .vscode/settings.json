@@ -14,6 +14,7 @@
   "tslint.exclude": "**/test/**/*.ts",
   "typescript.tsdk": "node_modules/typescript/lib",
   "spellright.language": [
+    "en",
     "English (American)"
   ],
   "spellright.documentTypes": [
