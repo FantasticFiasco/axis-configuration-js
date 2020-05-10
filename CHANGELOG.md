@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### :zap: Added
 
-- Support for specifyting option `http.Agent` or `https.Agent` when creating a new `Connection`
+- Support for specifying option `http.Agent` or `https.Agent` when creating a new `Connection`
 
 ## [1.0.7] - 2019-12-27
 
