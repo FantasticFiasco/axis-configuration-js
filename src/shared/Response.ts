@@ -14,5 +14,5 @@ export abstract class Response {
         return this.internalHtml;
     }
 
-    public abstract assertSuccess();
+    public abstract assertSuccess(): void;
 }

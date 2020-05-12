@@ -10,9 +10,14 @@ export class Converter {
         switch (accessRights) {
             case AccessRights.Administrator:
                 userGroups.push('admin');
+                userGroups.push('operator');
+                userGroups.push('viewer');
+                break
 
             case AccessRights.Operator:
                 userGroups.push('operator');
+                userGroups.push('viewer');
+                break
 
             case AccessRights.Viewer:
                 userGroups.push('viewer');

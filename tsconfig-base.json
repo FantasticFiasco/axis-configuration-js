@@ -1,0 +1,15 @@
+{
+ 	"compilerOptions": {
+		"declaration": true,
+		"forceConsistentCasingInFileNames": true,
+		"module": "commonjs",
+		"noUnusedParameters": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "es6",
+    "composite": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true
+	}
+}

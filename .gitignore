@@ -4,6 +4,7 @@
 ## TypeScript
 **/*.d.ts
 **/*.js.map
+**/tsconfig.tsbuildinfo
 
 ## Compiled JavaScript
 src/**/*.js
