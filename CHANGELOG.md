@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### :syringe: Fixed
+
+- npm package content
+
 ## [2.1.0] - 2020-05-10
 
 ### :zap: Added
