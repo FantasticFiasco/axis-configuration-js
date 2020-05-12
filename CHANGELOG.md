@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [2.1.1] - 2020-05-12
+
 ### :syringe: Fixed
 
 - npm package content
