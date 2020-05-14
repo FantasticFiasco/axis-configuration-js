@@ -1,15 +1,15 @@
 {
- 	"compilerOptions": {
-		"declaration": true,
-		"forceConsistentCasingInFileNames": true,
-		"module": "commonjs",
-		"noUnusedParameters": true,
-		"sourceMap": true,
-		"strict": true,
-		"target": "es6",
+  "compilerOptions": {
     "composite": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true
-	}
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es6"
+  }
 }
