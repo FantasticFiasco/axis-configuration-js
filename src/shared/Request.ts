@@ -29,7 +29,7 @@ export abstract class Request {
         }
     }
 
-    private handleStatusCodeError(error) {
+    private handleStatusCodeError(error: Error) {
         if (error instanceof errors.StatusCodeError) {
             if (error.statusCode === 401) {
                 throw new UnauthorizationError();

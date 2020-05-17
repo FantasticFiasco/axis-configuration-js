@@ -10,12 +10,18 @@ export class GetUsersResponseBuilder {
         switch (accessRights) {
             case AccessRights.Administrator:
                 this.admins.push(name);
+                this.operators.push(name);
+                this.viewers.push(name);
+                break
 
             case AccessRights.Operator:
                 this.operators.push(name);
+                this.viewers.push(name);
+                break
 
             case AccessRights.Viewer:
                 this.viewers.push(name);
+                break
         }
 
         if (ptz) {
