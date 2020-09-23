@@ -46,7 +46,7 @@
     "request-promise-native": "1.*"
   },
   "devDependencies": {
-    "@types/cheerio": "0.22.21",
+    "@types/cheerio": "0.22.22",
     "@types/jest": "26.0.14",
     "@types/lodash": "4.14.161",
     "@types/nock": "10.0.3",
