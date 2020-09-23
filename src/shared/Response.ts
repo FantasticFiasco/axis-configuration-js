@@ -1,12 +1,12 @@
 import * as cheerio from 'cheerio';
 
 export abstract class Response {
-    private internalHtml?: CheerioStatic;
+    private internalHtml?: cheerio.Root;
 
     protected constructor(protected readonly response: string) {
     }
 
-    protected get html(): CheerioStatic {
+    protected get html(): cheerio.Root {
         if (!this.internalHtml) {
             this.internalHtml = cheerio.load(this.response);
         }
