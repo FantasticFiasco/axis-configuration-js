@@ -1,5 +1,4 @@
 import * as expect from '@fantasticfiasco/expect';
-
 import { Connection, User } from './..';
 import { AddUserRequest } from './request-response/AddUserRequest';
 import { GetUsersRequest } from './request-response/GetUsersRequest';
@@ -15,8 +14,7 @@ export class UserAccounts {
      * Initializes a new instance of the class.
      * @param connection The connection to the device.
      */
-    constructor(private readonly connection: Connection) {
-    }
+    constructor(private readonly connection: Connection) {}
 
     /**
      * Adds a new user.

@@ -1,21 +1,10 @@
-import * as nock from 'nock';
 import { ExpectationError } from '@fantasticfiasco/expect';
-
-import {
-    AccessRights,
-    Connection,
-    RequestError,
-    Protocol,
-    User,
-    UnauthorizationError,
-    UnknownError,
-    UserAccounts,
-    UserAlreadyExistsError } from './../../src';
+import * as nock from 'nock';
+import { AccessRights, Connection, Protocol, RequestError, UnauthorizationError, UnknownError, User, UserAccounts, UserAlreadyExistsError } from './../../src';
 import { Generate } from './Generate';
 import { GetUsersResponseBuilder } from './request-response/GetUsersResponseBuilder';
 
 describe('users', () => {
-
     const connection = new Connection(Protocol.Http, '1.2.3.4', 80, 'root', 'pass');
     const userAccounts = new UserAccounts(connection);
 
@@ -184,7 +173,6 @@ describe('users', () => {
     });
 
     describe('#getAll', () => {
-
         let responseBuilder: GetUsersResponseBuilder;
 
         beforeEach(() => {

@@ -12,16 +12,16 @@ export class GetUsersResponseBuilder {
                 this.admins.push(name);
                 this.operators.push(name);
                 this.viewers.push(name);
-                break
+                break;
 
             case AccessRights.Operator:
                 this.operators.push(name);
                 this.viewers.push(name);
-                break
+                break;
 
             case AccessRights.Viewer:
                 this.viewers.push(name);
-                break
+                break;
         }
 
         if (ptz) {
@@ -32,9 +32,11 @@ export class GetUsersResponseBuilder {
     }
 
     build(): string {
-        return `admin="${this.admins.join(',')}"\r\n` +
+        return (
+            `admin="${this.admins.join(',')}"\r\n` +
             `operator="${this.operators.join(',')}"\r\n` +
             `viewer="${this.viewers.join(',')}"\r\n` +
-            `ptz="${this.ptz.join(',')}"`;
+            `ptz="${this.ptz.join(',')}"`
+        );
     }
 }

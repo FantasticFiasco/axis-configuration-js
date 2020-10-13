@@ -4,9 +4,7 @@ import { Converter } from './Converter';
 import { UpdateUserResponse } from './UpdateUserResponse';
 
 export class UpdateUserRequest extends Request {
-    constructor(
-        connection: Connection,
-        private readonly user: User) {
+    constructor(connection: Connection, private readonly user: User) {
         super(connection);
     }
 
@@ -17,6 +15,8 @@ export class UpdateUserRequest extends Request {
     }
 
     public get url(): string {
-        return `${this.connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${this.user.name}&pwd=${this.user.password}&grp=users&sgrp=${Converter.toUserGroups(this.user.accessRights, this.user.ptz)}`;
+        return `${this.connection.url}/axis-cgi/pwdgrp.cgi?action=update&user=${this.user.name}&pwd=${
+            this.user.password
+        }&grp=users&sgrp=${Converter.toUserGroups(this.user.accessRights, this.user.ptz)}`;
     }
 }

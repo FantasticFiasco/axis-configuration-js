@@ -32,11 +32,11 @@ async function updateParameters(parameters: Parameters): Promise<void> {
     console.log(`> Update parameters '${networkBonjourFriendlyName}' and '${networkUpnpFriendlyName}'...`);
     await parameters.update({
         [networkBonjourFriendlyName]: 'Even newer name',
-        [networkUpnpFriendlyName]:  'Even newer name',
+        [networkUpnpFriendlyName]: 'Even newer name',
     });
 }
 
-function print(root: { [name: string]: string}) {
+function print(root: { [name: string]: string }) {
     for (const parameter in root) {
         if (root.hasOwnProperty(parameter)) {
             console.log(`    ${parameter}=${root[parameter]}`);

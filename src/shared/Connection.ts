@@ -40,8 +40,8 @@ export class Connection {
         /**
          * The options for the connection to the device.
          */
-        public readonly options?: Options) {
-    }
+        public readonly options?: Options
+    ) {}
 
     /**
      * Gets the url.

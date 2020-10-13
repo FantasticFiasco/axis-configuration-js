@@ -1,5 +1,4 @@
 import * as expect from '@fantasticfiasco/expect';
-
 import { Connection } from './..';
 import { GetParametersRequest } from './request-response/GetParametersRequest';
 import { UpdateParametersRequest } from './request-response/UpdateParametersRequest';
@@ -14,8 +13,7 @@ export class Parameters {
      * Initializes a new instance of the class.
      * @param connection The connection to the device.
      */
-    constructor(private readonly connection: Connection) {
-    }
+    constructor(private readonly connection: Connection) {}
 
     /**
      * Gets parameters and their current values.

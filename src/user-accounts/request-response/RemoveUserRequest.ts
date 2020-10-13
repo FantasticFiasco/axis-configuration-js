@@ -3,9 +3,7 @@ import { Request } from './../../shared/Request';
 import { RemoveUserResponse } from './RemoveUserResponse';
 
 export class RemoveUserRequest extends Request {
-    constructor(
-        connection: Connection,
-        private readonly username: string) {
+    constructor(connection: Connection, private readonly username: string) {
         super(connection);
     }
 

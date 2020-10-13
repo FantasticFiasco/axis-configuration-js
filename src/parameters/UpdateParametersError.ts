@@ -10,7 +10,8 @@ export class UpdateParametersError extends Error {
         /**
          * Gets the names of parameters that couldn't be updated.
          */
-        public readonly parameterNames: string[]) {
-            super();
+        public readonly parameterNames: string[]
+    ) {
+        super();
     }
 }

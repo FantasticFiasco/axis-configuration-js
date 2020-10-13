@@ -4,12 +4,9 @@ import { Converter } from './Converter';
 import { GetParametersResponse } from './GetParametersResponse';
 
 export class GetParametersRequest extends Request {
-
     private readonly parameterGroups: string[];
 
-    constructor(
-        connection: Connection,
-        ...parameterGroups: string[]) {
+    constructor(connection: Connection, ...parameterGroups: string[]) {
         super(connection);
         this.parameterGroups = parameterGroups;
     }

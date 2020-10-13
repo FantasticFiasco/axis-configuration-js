@@ -1,16 +1,8 @@
-import * as nock from 'nock';
 import { ExpectationError } from '@fantasticfiasco/expect';
-
-import {
-    Connection,
-    Parameters,
-    Protocol,
-    RequestError,
-    UnauthorizationError,
-    UpdateParametersError } from './../../src';
+import * as nock from 'nock';
+import { Connection, Parameters, Protocol, RequestError, UnauthorizationError, UpdateParametersError } from './../../src';
 
 describe('parameters', () => {
-
     const connection = new Connection(Protocol.Http, '1.2.3.4', 80, 'root', 'pass');
     const parameters = new Parameters(connection);
 
@@ -191,7 +183,7 @@ describe('parameters', () => {
                 .reply(200, 'OK');
 
             // Act
-            await parameters.update({'Network.Bonjour.FriendlyName': 'Main Entrance'});
+            await parameters.update({ 'Network.Bonjour.FriendlyName': 'Main Entrance' });
 
             // Assert
             expect(scope.isDone()).toBe(true);
@@ -206,7 +198,7 @@ describe('parameters', () => {
             // Act
             await parameters.update({
                 'Network.Bonjour.FriendlyName': 'Main Entrance',
-                'Network.Bonjour.Enabled': 'yes'
+                'Network.Bonjour.Enabled': 'yes',
             });
 
             // Assert
@@ -229,7 +221,7 @@ describe('parameters', () => {
             } catch (error) {
                 // Assert
                 expect(error).toBeInstanceOf(UpdateParametersError);
-                expect(error.parameterNames).toEqual([ name ]);
+                expect(error.parameterNames).toEqual([name]);
             }
         });
 
@@ -251,46 +243,40 @@ describe('parameters', () => {
             } catch (error) {
                 // Assert
                 expect(error).toBeInstanceOf(UpdateParametersError);
-                expect(error.parameterNames).toEqual([ name1, name2 ]);
+                expect(error.parameterNames).toEqual([name1, name2]);
             }
         });
 
-        test(
-            'should update a mixture of known and unknown parameters',
-            async () => {
-                // Arrange
-                const name = 'Unknown.Parameter';
-                const value = 'Value';
+        test('should update a mixture of known and unknown parameters', async () => {
+            // Arrange
+            const name = 'Unknown.Parameter';
+            const value = 'Value';
 
-                nock(connection.url)
-                    .get(/param.cgi\?action=update/)
-                    .reply(200, `# Error: Error setting '${name}' to '${value}'!\r\n`);
+            nock(connection.url)
+                .get(/param.cgi\?action=update/)
+                .reply(200, `# Error: Error setting '${name}' to '${value}'!\r\n`);
 
-                try {
-                    // Act
-                    await parameters.update({ 'Network.Bonjour.FriendlyName': 'Main Entrance', name: value });
-                    throw new Error('This exception should not be thrown');
-                } catch (error) {
-                    // Assert
-                    expect(error).toBeInstanceOf(UpdateParametersError);
-                    expect(error.parameterNames).toEqual([ name ]);
-                }
+            try {
+                // Act
+                await parameters.update({ 'Network.Bonjour.FriendlyName': 'Main Entrance', name: value });
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                expect(error).toBeInstanceOf(UpdateParametersError);
+                expect(error.parameterNames).toEqual([name]);
             }
-        );
+        });
 
-        test(
-            'should throw exception if no parameters are specified',
-            async () => {
-                try {
-                    // Act
-                    await parameters.update({});
-                    throw new Error('This exception should not be thrown');
-                } catch (error) {
-                    // Assert
-                    expect(error).toBeInstanceOf(ExpectationError);
-                }
+        test('should throw exception if no parameters are specified', async () => {
+            try {
+                // Act
+                await parameters.update({});
+                throw new Error('This exception should not be thrown');
+            } catch (error) {
+                // Assert
+                expect(error).toBeInstanceOf(ExpectationError);
             }
-        );
+        });
 
         test('should throw exception if device is unresponsive', async () => {
             // Arrange

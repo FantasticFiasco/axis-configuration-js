@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-
 import { UpdateParametersError } from './../..';
 import { Response } from './../../shared/Response';
 
@@ -21,15 +20,19 @@ export class UpdateParametersResponse extends Response {
         }
 
         const parameterErrors = this.response.split('\n');
-        const parameterErrorNames = _.reduce(parameterErrors, (result: string[], parameter: string) => {
-            const match = UpdateParametersResponse.ParameterErrorResponse.exec(parameter);
+        const parameterErrorNames = _.reduce(
+            parameterErrors,
+            (result: string[], parameter: string) => {
+                const match = UpdateParametersResponse.ParameterErrorResponse.exec(parameter);
 
-            if (match) {
-                result.push(match[1]);
-            }
+                if (match) {
+                    result.push(match[1]);
+                }
 
-            return result;
-        }, []);
+                return result;
+            },
+            []
+        );
 
         throw new UpdateParametersError(parameterErrorNames);
     }

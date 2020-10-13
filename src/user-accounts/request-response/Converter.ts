@@ -1,9 +1,7 @@
 import { ExpectationError } from '@fantasticfiasco/expect';
-
 import { AccessRights } from './../..';
 
 export class Converter {
-
     public static toUserGroups(accessRights: AccessRights, ptz: boolean): string {
         const userGroups: string[] = [];
 
@@ -12,12 +10,12 @@ export class Converter {
                 userGroups.push('admin');
                 userGroups.push('operator');
                 userGroups.push('viewer');
-                break
+                break;
 
             case AccessRights.Operator:
                 userGroups.push('operator');
                 userGroups.push('viewer');
-                break
+                break;
 
             case AccessRights.Viewer:
                 userGroups.push('viewer');

@@ -24,7 +24,8 @@ export class RequestError extends Error {
         /**
          * The response.
          */
-        readonly response: http.IncomingMessage) {
+        readonly response: http.IncomingMessage
+    ) {
         super(message);
-        }
+    }
 }

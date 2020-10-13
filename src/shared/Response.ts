@@ -3,8 +3,7 @@ import * as cheerio from 'cheerio';
 export abstract class Response {
     private internalHtml?: cheerio.Root;
 
-    protected constructor(protected readonly response: string) {
-    }
+    protected constructor(protected readonly response: string) {}
 
     protected get html(): cheerio.Root {
         if (!this.internalHtml) {

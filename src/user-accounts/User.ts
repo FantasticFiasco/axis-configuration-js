@@ -1,5 +1,4 @@
 import * as expect from '@fantasticfiasco/expect';
-
 import { AccessRights } from './AccessRights';
 
 /**
@@ -31,8 +30,8 @@ export class User {
         /**
          * Whether user has access rights for PTZ control.
          */
-        readonly ptz: boolean) {
-
+        readonly ptz: boolean
+    ) {
         // Valdate name
         expect.toBeTrue(name.length > 0 && name.length < 15, 'User name must be between 1-14 characters.');
         expect.toBeAlphanumeric(name, 'User name must only contain the characters a-z, A-Z and 0-9.');

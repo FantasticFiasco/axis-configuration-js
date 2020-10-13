@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-
 import { Response } from './../../shared/Response';
 
 export class GetParametersResponse extends Response {
@@ -21,19 +20,23 @@ export class GetParametersResponse extends Response {
     public get parameters(): { [name: string]: string } {
         const parameters = this.response.split('\n');
 
-        return _.reduce(parameters, (result: { [name: string]: string }, parameter: string) => {
-            if (GetParametersResponse.ErrorResponse.test(parameter)) {
+        return _.reduce(
+            parameters,
+            (result: { [name: string]: string }, parameter: string) => {
+                if (GetParametersResponse.ErrorResponse.test(parameter)) {
+                    return result;
+                }
+
+                const match = GetParametersResponse.ParameterSuccessResponse.exec(parameter);
+                if (match) {
+                    const name = match[1];
+                    const value = match[2].trim();
+                    result[name] = value;
+                }
+
                 return result;
-            }
-
-            const match = GetParametersResponse.ParameterSuccessResponse.exec(parameter);
-            if (match) {
-                const name = match[1];
-                const value = match[2].trim();
-                result[name] = value;
-            }
-
-            return result;
-        }, {});
+            },
+            {}
+        );
     }
 }

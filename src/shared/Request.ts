@@ -1,12 +1,9 @@
 import * as rp from 'request-promise-native';
 import * as errors from 'request-promise-native/errors';
-
 import { Connection, RequestError, UnauthorizationError } from './';
 
 export abstract class Request {
-
-    protected constructor(protected readonly connection: Connection) {
-    }
+    protected constructor(protected readonly connection: Connection) {}
 
     protected async get(url: string): Promise<string> {
         const options: rp.RequestPromiseOptions = {

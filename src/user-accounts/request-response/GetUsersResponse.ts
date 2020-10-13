@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-
 import { AccessRights, User } from './../..';
 import { Response } from './../../shared/Response';
 
@@ -47,17 +46,21 @@ export class GetUsersResponse extends Response {
         // Each line represents a parameter
         const parameters = this.response.split('\n');
 
-        return _.reduce(parameters, (result: { [name: string]: string[] }, parameter: string) => {
-            const match = GetUsersResponse.ParameterSuccessResponse.exec(parameter);
-            if (match) {
-                const name = match[1];
-                const values = match[2].split(',');
+        return _.reduce(
+            parameters,
+            (result: { [name: string]: string[] }, parameter: string) => {
+                const match = GetUsersResponse.ParameterSuccessResponse.exec(parameter);
+                if (match) {
+                    const name = match[1];
+                    const values = match[2].split(',');
 
-                result[name] = _.filter(values, (value) => value.length > 0);
-            }
+                    result[name] = _.filter(values, (value) => value.length > 0);
+                }
 
-            return result;
-        }, {});
+                return result;
+            },
+            {}
+        );
     }
 
     private createUsers(names: string[], accessRights: AccessRights, usersWithPtz: string[]): User[] {

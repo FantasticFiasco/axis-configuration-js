@@ -16,12 +16,11 @@ function update(userAccounts: UserAccounts): Promise<void> {
 
 function list(userAccounts: UserAccounts): Promise<void> {
     console.log('> List all users...');
-    return userAccounts.getAll()
-        .then((users: User[]) => {
-            users.forEach((user) => {
-                console.log(`    ${user.name} (${AccessRights[user.accessRights]})`);
-            });
+    return userAccounts.getAll().then((users: User[]) => {
+        users.forEach((user) => {
+            console.log(`    ${user.name} (${AccessRights[user.accessRights]})`);
         });
+    });
 }
 
 function remove(userAccounts: UserAccounts): Promise<void> {
